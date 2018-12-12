@@ -24,6 +24,7 @@ const getUserInfoByTokenSql = `SELECT u.id, u.username, u.mobile, ua.token
                               ON u.id = ua.user_id 
                               WHERE token = ?
                               ORDER BY ua.ctime DESC`
+// const updateUserInfoSql = ``
 
 module.exports = {
   registerAction(req, res) {
@@ -105,6 +106,8 @@ module.exports = {
       password: req.body.password
     }
 
+    // console.log(userInfo)
+
     sqlExcute(getUserInfoSql, userInfo.username)
       .then(result => {
         if (!result || result.length === 0) return res.status(400).send(new ResBody(400, null, null, '用户名不存在!'))
@@ -130,12 +133,19 @@ module.exports = {
         }
       })
   },
-  getUserInfoAction(req, res) {
+  getUserInfoInterceptor(req, res, next) {
     sqlExcute(getUserInfoByTokenSql, req.headers.authorization)
       .then(result => {
-        res.send(new ResBody(200, result[0], '获取用户信息成功!', null))
+        req.userInfo = result[0]
+        next()
       }, err => {
-        res.status(500).send(new ResBody(500, err.message, null, '获取用户信息失败!'))
+        next()
       })
+  },
+  getUserInfoAction(req, res) {
+    res.send(new ResBody(200, req.userInfo, '获取用户信息成功!', null))
+  },
+  updateUserInfoAction(req, res) {
+
   }
 }

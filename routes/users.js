@@ -7,5 +7,6 @@ router.get('/getVCode', ctrl.users.getVCodeAction)
 router.get('/checkUsername/:username', ctrl.users.checkUsernameAction)
 router.post('/login', ctrl.users.loginAction)
 router.get('/getUserInfo', ctrl.users.getUserInfoAction)
+router.post('/updateUserInfo', ctrl.users.updateUserInfoAction)
 
 module.exports = router;

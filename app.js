@@ -11,6 +11,7 @@ const expressJwt = require('express-jwt')
 var mount = require('mount-routes')
 
 const ResBody = require('./models/ResBody')
+const getUserInfoInterceptor = require('./controller').users.getUserInfoInterceptor
 
 const app = express()
 
@@ -75,6 +76,8 @@ app.use((err, req, res, next) => {
     res.status(401).send(new ResBody(401, null, null, '无效的token!'))
   }
 })
+
+app.use(getUserInfoInterceptor)
 
 mount(app, path.join(process.cwd(), "/routes"), true)
 
