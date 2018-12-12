@@ -8,15 +8,22 @@ const secret = config.secret
 
 const moment = require('moment')
 
+// SQL语句
 const getUserCountSql = 'SELECT count(*) as count FROM users WHERE username = ?'
 const addUserSql = 'INSERT INTO users SET ?'
 const addUserTokenSql = 'INSERT INTO users_auth SET ?'
 const getUserInfoSql = `SELECT u.id, u.password, u.mobile ,ua.token, ua.ctime
-                  FROM users AS u 
-                  LEFT JOIN users_auth AS ua 
-                  ON u.id = ua.user_id 
-                  WHERE username = ?
-                  ORDER BY ua.ctime DESC`
+                        FROM users AS u 
+                        LEFT JOIN users_auth AS ua 
+                        ON u.id = ua.user_id 
+                        WHERE username = ?
+                        ORDER BY ua.ctime DESC`
+const getUserInfoByTokenSql = `SELECT u.id, u.username, u.mobile, ua.token
+                              FROM users AS u 
+                              LEFT JOIN users_auth AS ua 
+                              ON u.id = ua.user_id 
+                              WHERE token = ?
+                              ORDER BY ua.ctime DESC`
 
 module.exports = {
   registerAction(req, res) {
@@ -121,6 +128,14 @@ module.exports = {
         } else {
           res.status(400).send(new ResBody(400, null, '登录失败!密码错误!', null));
         }
+      })
+  },
+  getUserInfoAction(req, res) {
+    sqlExcute(getUserInfoByTokenSql, req.headers.authorization)
+      .then(result => {
+        res.send(new ResBody(200, result[0], '获取用户信息成功!', null))
+      }, err => {
+        res.status(500).send(new ResBody(500, err.message, null, '获取用户信息失败!'))
       })
   }
 }
