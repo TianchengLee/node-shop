@@ -2,6 +2,8 @@ const sqlExcute = require('../db')
 const svgCaptcha = require('svg-captcha')
 const bcrypt = require('bcryptjs')
 const ResBody = require('../models/ResBody')
+const jwt = require('jsonwebtoken')
+const config = require('../config')
 
 const getUserCountSql = 'SELECT count(*) as count FROM users WHERE username = ?'
 
@@ -61,5 +63,33 @@ module.exports = {
           res.send(new ResBody(400, null, '用户名可用', null))
         }
       })
+  },
+  loginAction(req, res) {
+    if (!req.body.username || !req.body.username.trim()) return res.status(400).send(new ResBody(400, null, null, '用户名未填写！'))
+    if (!req.body.password || !req.body.password.trim()) return res.status(400).send(new ResBody(400, null, null, '密码未填写！'))
+
+    const userInfo = {
+      username: req.body.username,
+      password: req.body.password
+    }
+
+    sqlExcute('SELECT password FROM users WHERE username = ?', userInfo.username)
+      .then(result => {
+        console.log(result)
+        if (!result || result.length === 0) return res.status(400).send(new ResBody(400, null, null, '用户名不存在!'))
+        const hash = result[0].password
+        if (bcrypt.compareSync(req.body.password, hash)) {
+          const secret = config.secret
+          let token = jwt.sign(userInfo, secret, {
+            expiresIn: 2592000 //一个月到期时间
+          })
+          token = 'Bearer ' + token
+          res.send(new ResBody(200, { token }, '登录成功!', null))
+        } else {
+          res.status(400).send(new ResBody(400, null, '登录失败!密码错误!', null));
+        }
+      })
+
+
   }
 }
