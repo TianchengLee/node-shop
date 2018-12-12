@@ -8,11 +8,9 @@ const FileStreamRotator = require('file-stream-rotator');
 const session = require('express-session')
 const cors = require('cors')
 const expressJwt = require('express-jwt')
+var mount = require('mount-routes')
 
 const ResBody = require('./models/ResBody')
-const indexRouter = require('./routes/index')
-const usersRouter = require('./routes/users')
-
 
 const app = express()
 
@@ -48,7 +46,18 @@ app.use(session({
 }))
 
 //使用中间件验证token合法性
-app.use(expressJwt({ secret }).unless({
+app.use(expressJwt({
+  secret, getToken(req) {
+    if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+      return req.headers.authorization.split(' ')[1]
+    } else if (req.query && req.query.token) {
+      return req.query.token
+    } else if (req.body && req.body.token) {
+      return req.body.token
+    }
+    return req.headers.authorization
+  }
+}).unless({
   //除了这些地址, 其他的URL都需要验证, 支持正则
   path: [
     '/users/login',
@@ -67,9 +76,9 @@ app.use(function (err, req, res, next) {
   }
 })
 
+mount(app, path.join(process.cwd(), "/routes"), true)
+
 app.use(express.static(path.join(__dirname, 'public')))
-app.use('/', indexRouter)
-app.use('/users', usersRouter)
 
 app.use(function (req, res, next) {
   next(createError(404))

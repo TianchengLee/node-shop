@@ -73,22 +73,22 @@ module.exports = {
       password: req.body.password
     }
 
-    sqlExcute('SELECT password FROM users WHERE username = ?', userInfo.username)
+    sqlExcute('SELECT password, mobile FROM users WHERE username = ?', userInfo.username)
       .then(result => {
         if (!result || result.length === 0) return res.status(400).send(new ResBody(400, null, null, '用户名不存在!'))
         const hash = result[0].password
+        const mobile = result[0].mobile
+        const username = userInfo.username
         if (bcrypt.compareSync(req.body.password, hash)) {
           const secret = config.secret
           let token = jwt.sign(userInfo, secret, {
             expiresIn: 2592000 //一个月到期时间
           })
           token = 'Bearer ' + token
-          res.send(new ResBody(200, { token }, '登录成功!', null))
+          res.send(new ResBody(200, { token, username, mobile }, '登录成功!', null))
         } else {
           res.status(400).send(new ResBody(400, null, '登录失败!密码错误!', null));
         }
       })
-
-
   }
 }
