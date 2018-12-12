@@ -1,4 +1,4 @@
-const conn = require('../db')
+const sqlExcute = require('../db')
 const svgCaptcha = require('svg-captcha')
 const bcrypt = require('bcryptjs')
 const ResBody = require('../models/ResBody')
@@ -18,15 +18,19 @@ module.exports = {
 
     delete userInfo.vCode
 
-    const sql = 'INSERT INTO users SET ?'
-
-    conn.query(sql, userInfo, (err, result) => {
-      if (err) return res.status(500).send(err.message)
-      if (result.affectedRows) {
-        delete userInfo.password
-        res.send(new ResBody(200, userInfo, '注册成功!'))
-      }
-    })
+    sqlExcute('SELECT count(*) as count FROM users WHERE username = ?', userInfo.username)
+      .then(result => {
+        if (result[0].count > 0) return res.status(400).send(new ResBody(400, null, null, '用户名已存在!'))
+        return sqlExcute('INSERT INTO users SET ?', userInfo)
+      })
+      .then(result => {
+        if (result.affectedRows) {
+          delete userInfo.password
+          res.send(new ResBody(200, userInfo, '注册成功!'))
+        }
+      }, err => {
+        res.status(500).send(err.message)
+      })
 
   },
   vCodeAction(req, res) {
