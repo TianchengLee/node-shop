@@ -30,8 +30,6 @@ const updateUserInfoSql = `UPDATE users
 
 module.exports = {
   registerAction(req, res) {
-    // console.log(req.body)
-    // console.log(req.session.vCode)
     if (!req.session.vCode || !req.body.vCode || req.session.vCode.toLowerCase() != req.body.vCode.toLowerCase()) return res.status(400).send(new ResBody(400, null, null, '验证码错误!'))
     if (!req.body.username || !req.body.username.trim()) return res.status(400).send(new ResBody(400, null, null, '用户名未填写！'))
     if (!req.body.password || !req.body.password.trim()) return res.status(400).send(new ResBody(400, null, null, '密码未填写！'))
@@ -108,8 +106,6 @@ module.exports = {
       password: req.body.password
     }
 
-    // console.log(userInfo)
-
     sqlExcute(getUserInfoSql, userInfo.username)
       .then(result => {
         if (!result || result.length === 0) return res.status(400).send(new ResBody(400, null, null, '用户名不存在!'))
@@ -129,9 +125,10 @@ module.exports = {
             }
             sqlExcute(addUserTokenSql, tokenInfo)
           }
+          delete userInfo.password
           res.send(new ResBody(200, userInfo, '登录成功!', null))
         } else {
-          res.status(400).send(new ResBody(400, null, null, '登录失败!密码错误!'));
+          res.status(400).send(new ResBody(400, null, null, '登录失败!密码错误!'))
         }
       })
   },
@@ -159,8 +156,30 @@ module.exports = {
           res.send(new ResBody(200, req.userInfo, '用户信息修改成功!', null))
         }
       }, err => {
-        console.log(err.message)
         res.send(new ResBody(500, null, null, '用户信息修改失败!'))
+      })
+  },
+  updatePasswordAction(req, res) {
+    if (!req.body.oldPassword || !req.body.oldPassword.trim()) return res.status(400).send(new ResBody(400, null, null, '旧密码未填写！'))
+    if (!req.body.newPassword || !req.body.newPassword.trim()) return res.status(400).send(new ResBody(400, null, null, '新密码未填写！'))
+
+    sqlExcute(getUserInfoSql, req.userInfo.username)
+      .then(result => {
+        if (!result || result.length === 0) return res.status(400).send(new ResBody(400, null, null, '用户名不存在!'))
+        const hash = result[0].password
+        if (bcrypt.compareSync(req.body.oldPassword, hash)) {
+          let password = bcrypt.hashSync(req.body.newPassword, 10)
+          return sqlExcute(updateUserInfoSql, [{ password }, req.userInfo.id])
+        } else {
+          res.status(400).send(new ResBody(400, null, null, '修改密码失败!密码错误!'))
+        }
+      })
+      .then(result => {
+        if (result.affectedRows) {
+          res.send(new ResBody(200, null, '修改密码成功!', null))
+        }
+      }, err => {
+        res.status(500).send(new ResBody(500, null, null, '修改密码失败!内部错误:' + err.message));
       })
   }
 }

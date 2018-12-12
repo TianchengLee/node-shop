@@ -8,5 +8,6 @@ router.get('/checkUsername/:username', ctrl.users.checkUsernameAction)
 router.post('/login', ctrl.users.loginAction)
 router.get('/getUserInfo', ctrl.users.getUserInfoAction)
 router.post('/updateUserInfo', ctrl.users.updateUserInfoAction)
+router.post('/updatePassword', ctrl.users.updatePasswordAction)
 
 module.exports = router;
