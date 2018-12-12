@@ -3,8 +3,12 @@ const svgCaptcha = require('svg-captcha')
 const bcrypt = require('bcryptjs')
 const ResBody = require('../models/ResBody')
 
+const getUserCountSql = 'SELECT count(*) as count FROM users WHERE username = ?'
+
+const addUserSql = 'INSERT INTO users SET ?'
+
 module.exports = {
-  registerAction(req, res, next) {
+  registerAction(req, res) {
     console.log(req.body)
     console.log(req.session.vCode)
     if (!req.session.vCode || !req.body.vCode || req.session.vCode.toLowerCase() != req.body.vCode.toLowerCase()) return res.status(400).send(new ResBody(400, null, null, '验证码错误!'))
@@ -18,10 +22,10 @@ module.exports = {
 
     delete userInfo.vCode
 
-    sqlExcute('SELECT count(*) as count FROM users WHERE username = ?', userInfo.username)
+    sqlExcute(getUserCountSql, userInfo.username)
       .then(result => {
         if (result[0].count > 0) return res.status(400).send(new ResBody(400, null, null, '用户名已存在!'))
-        return sqlExcute('INSERT INTO users SET ?', userInfo)
+        return sqlExcute(addUserSql, userInfo)
       })
       .then(result => {
         if (result.affectedRows) {
@@ -33,7 +37,7 @@ module.exports = {
       })
 
   },
-  vCodeAction(req, res) {
+  getVCodeAction(req, res) {
     const codeConfig = {
       size: 4,// 验证码长度
       ignoreChars: '0o1i', // 验证码字符中排除 0o1i
@@ -45,5 +49,17 @@ module.exports = {
     console.log(vCode.text)
     res.type('svg')
     res.send(vCode.data)
+  },
+  checkUsernameAction(req, res) {
+    if (!req.params.username || !req.params.username.trim()) return res.status(400).send(new ResBody(400, null, null, '用户名未填写！'))
+
+    sqlExcute(getUserCountSql, req.params.username)
+      .then(result => {
+        if (result[0].count > 0) {
+          res.status(400).send(new ResBody(400, null, null, '用户名已存在'))
+        } else {
+          res.send(new ResBody(400, null, '用户名可用', null))
+        }
+      })
   }
 }
