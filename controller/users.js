@@ -75,7 +75,6 @@ module.exports = {
 
     sqlExcute('SELECT password FROM users WHERE username = ?', userInfo.username)
       .then(result => {
-        console.log(result)
         if (!result || result.length === 0) return res.status(400).send(new ResBody(400, null, null, '用户名不存在!'))
         const hash = result[0].password
         if (bcrypt.compareSync(req.body.password, hash)) {
