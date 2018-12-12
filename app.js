@@ -68,7 +68,7 @@ app.use(expressJwt({
 }))
 
 //拦截器
-app.use(function (err, req, res, next) {
+app.use((err, req, res, next) => {
   //当token验证失败时会抛出如下错误
   if (err.name === 'UnauthorizedError') {
     //这个需要根据自己的业务逻辑来处理（ 具体的err值 请看下面）
@@ -80,11 +80,11 @@ mount(app, path.join(process.cwd(), "/routes"), true)
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   next(createError(404))
 })
 
-app.use(function (err, req, res, next) {
+app.use((err, req, res, next) => {
   res.locals.message = err.message
   res.locals.error = req.app.get('env') === 'development' ? err : {}
 
