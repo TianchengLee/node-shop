@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const fs = require('fs')
 const FileStreamRotator = require('file-stream-rotator');
+const session = require('express-session')
 
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
@@ -29,6 +30,14 @@ app.use(logger('combined', { stream: accessLogStream }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
+app.use(session({
+  secret: 'itcast-wh',
+  name:'itcast-wh-name',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 8000000000 }
+}))
+
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRouter)
