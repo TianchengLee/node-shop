@@ -24,7 +24,9 @@ const getUserInfoByTokenSql = `SELECT u.id, u.username, u.mobile, ua.token
                               ON u.id = ua.user_id 
                               WHERE token = ?
                               ORDER BY ua.ctime DESC`
-// const updateUserInfoSql = ``
+const updateUserInfoSql = `UPDATE users
+                          SET ?
+                          WHERE id = ?`
 
 module.exports = {
   registerAction(req, res) {
@@ -129,7 +131,7 @@ module.exports = {
           }
           res.send(new ResBody(200, userInfo, '登录成功!', null))
         } else {
-          res.status(400).send(new ResBody(400, null, '登录失败!密码错误!', null));
+          res.status(400).send(new ResBody(400, null, null, '登录失败!密码错误!'));
         }
       })
   },
@@ -146,6 +148,19 @@ module.exports = {
     res.send(new ResBody(200, req.userInfo, '获取用户信息成功!', null))
   },
   updateUserInfoAction(req, res) {
+    if (!req.body.mobile || !req.body.mobile.trim()) return res.status(400).send(new ResBody(400, null, null, '用户手机号未填写！'))
 
+    let userInfo = { mobile: req.body.mobile }
+
+    sqlExcute(updateUserInfoSql, [userInfo, req.userInfo.id])
+      .then(result => {
+        if (result.affectedRows) {
+          req.userInfo.mobile = req.body.mobile
+          res.send(new ResBody(200, req.userInfo, '用户信息修改成功!', null))
+        }
+      }, err => {
+        console.log(err.message)
+        res.send(new ResBody(500, null, null, '用户信息修改失败!'))
+      })
   }
 }
