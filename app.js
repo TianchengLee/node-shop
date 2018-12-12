@@ -6,6 +6,7 @@ const logger = require('morgan')
 const fs = require('fs')
 const FileStreamRotator = require('file-stream-rotator');
 const session = require('express-session')
+const cors = require('cors')
 
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
@@ -25,6 +26,7 @@ const accessLogStream = FileStreamRotator.getStream({
   verbose: false
 })
 
+app.use(cors())
 app.use(logger('dev'))
 app.use(logger('combined', { stream: accessLogStream }))
 app.use(express.json())
