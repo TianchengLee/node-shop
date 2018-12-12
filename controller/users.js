@@ -1,23 +1,35 @@
 const conn = require('../db')
 const svgCaptcha = require('svg-captcha')
+const bcrypt = require('bcryptjs')
+const ResBody = require('../models/ResBody')
 
 module.exports = {
-  registerAction(req, res) {
+  registerAction(req, res, next) {
     console.log(req.body)
     console.log(req.session.vCode)
-    if (!req.session.vCode || !req.body.vCode || req.session.vCode.toLowerCase() != req.body.vCode.toLowerCase()) return res.send({ "error": 401, "message": "验证码错误!" })
-    if (!req.body.username) return res.send({ "error": 403, "message": "用户名未填写！" })
-    if (!req.body.password) return res.send({ "error": 403, "message": "密码未填写！" })
-    if (!req.body.mobile) return res.send({ "error": 403, "message": "用户手机号未填写！" })
-    res.send('ok')
+    if (!req.session.vCode || !req.body.vCode || req.session.vCode.toLowerCase() != req.body.vCode.toLowerCase()) return res.status(400).send(new ResBody(400, null, null, '验证码错误!'))
+    if (!req.body.username || !req.body.username.trim()) return res.status(400).send(new ResBody(400, null, null, '用户名未填写！'))
+    if (!req.body.password || !req.body.password.trim()) return res.status(400).send(new ResBody(400, null, null, '密码未填写！'))
+    if (!req.body.mobile || !req.body.mobile.trim()) return res.status(400).send(new ResBody(400, null, null, '用户手机号未填写！'))
+
+    req.body.password = bcrypt.hashSync(req.body.password, 10)
+
+    let userInfo = { ...req.body }
+
+    delete userInfo.vCode
+
+    const sql = 'INSERT INTO users SET ?'
+
+    conn.query(sql, userInfo, (err, result) => {
+      if (err) return res.status(500).send(err.message)
+      if (result.affectedRows) {
+        delete userInfo.password
+        res.send(new ResBody(200, userInfo, '注册成功!'))
+      }
+    })
+
   },
   vCodeAction(req, res) {
-    // let vCode = ''
-    // for (let i = 0; i < 6; i++) {
-    //   vCode += (Math.random() * 1000).toString().substr(0, 1)
-    // }
-    // req.session.vCode = vCode
-    // res.send(vCode)
     const codeConfig = {
       size: 4,// 验证码长度
       ignoreChars: '0o1i', // 验证码字符中排除 0o1i
@@ -26,7 +38,7 @@ module.exports = {
     }
     const vCode = svgCaptcha.create(codeConfig)
     req.session.vCode = vCode.text
-
+    console.log(vCode.text)
     res.type('svg')
     res.send(vCode.data)
   }
