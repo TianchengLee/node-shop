@@ -18,6 +18,7 @@ CREATE TABLE `users` (
   `username` varchar(255) NOT NULL DEFAULT '',
   `password` varchar(255) NOT NULL DEFAULT '',
   `mobile` varchar(255) NOT NULL DEFAULT '',
+  `ctime` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
@@ -25,4 +26,4 @@ CREATE TABLE `users` (
 # Data for table "users"
 #
 
-INSERT INTO `users` VALUES (11,'ltc','$2a$10$NRim0Rvao0Rf/GDF.a6l9uvb8G5Sz49GlU5v.WENi7kYIIKIpYSpC','13838383838');
+INSERT INTO `users` VALUES (13,'ltc','$2a$10$0bxUi3aPEjdrGHwmfnsKV.eH9QpqhRYweKVVsV.Fa2XCBb53yT3YS','13838383838','2018-12-12 21:29:28');

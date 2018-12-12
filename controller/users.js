@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs')
 const ResBody = require('../models/ResBody')
 const jwt = require('jsonwebtoken')
 const config = require('../config')
+const moment = require('moment')
 
 const getUserCountSql = 'SELECT count(*) as count FROM users WHERE username = ?'
 
@@ -20,7 +21,7 @@ module.exports = {
 
     req.body.password = bcrypt.hashSync(req.body.password, 10)
 
-    let userInfo = { ...req.body }
+    let userInfo = { ...req.body, ctime: moment().format('YYYY-MM-DD HH:mm:ss') }
 
     delete userInfo.vCode
 
