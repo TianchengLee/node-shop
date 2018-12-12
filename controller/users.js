@@ -4,16 +4,24 @@ const bcrypt = require('bcryptjs')
 const ResBody = require('../models/ResBody')
 const jwt = require('jsonwebtoken')
 const config = require('../config')
+const secret = config.secret
+
 const moment = require('moment')
 
 const getUserCountSql = 'SELECT count(*) as count FROM users WHERE username = ?'
-
 const addUserSql = 'INSERT INTO users SET ?'
+const addUserTokenSql = 'INSERT INTO users_auth SET ?'
+const getUserInfoSql = `SELECT u.id, u.password, u.mobile ,ua.token, ua.ctime
+                  FROM users AS u 
+                  LEFT JOIN users_auth AS ua 
+                  ON u.id = ua.user_id 
+                  WHERE username = ?
+                  ORDER BY ua.ctime DESC`
 
 module.exports = {
   registerAction(req, res) {
-    console.log(req.body)
-    console.log(req.session.vCode)
+    // console.log(req.body)
+    // console.log(req.session.vCode)
     if (!req.session.vCode || !req.body.vCode || req.session.vCode.toLowerCase() != req.body.vCode.toLowerCase()) return res.status(400).send(new ResBody(400, null, null, '验证码错误!'))
     if (!req.body.username || !req.body.username.trim()) return res.status(400).send(new ResBody(400, null, null, '用户名未填写！'))
     if (!req.body.password || !req.body.password.trim()) return res.status(400).send(new ResBody(400, null, null, '密码未填写！'))
@@ -33,10 +41,26 @@ module.exports = {
       .then(result => {
         if (result.affectedRows) {
           delete userInfo.password
-          res.send(new ResBody(200, userInfo, '注册成功!'))
+
+          let token = jwt.sign({ secret }, secret, {
+            expiresIn: config.tokenExpire
+          })
+          let ctime = moment().format('YYYY-MM-DD HH:mm:ss')
+          const tokenInfo = {
+            user_id: result.insertId,
+            token,
+            ctime
+          }
+          userInfo.token = token
+          return sqlExcute(addUserTokenSql, tokenInfo)
         }
       }, err => {
         res.status(500).send(err.message)
+      })
+      .then(result => {
+        if (result.affectedRows) {
+          res.send(new ResBody(200, userInfo, '注册成功!'))
+        }
       })
 
   },
@@ -74,19 +98,26 @@ module.exports = {
       password: req.body.password
     }
 
-    sqlExcute('SELECT password, mobile FROM users WHERE username = ?', userInfo.username)
+    sqlExcute(getUserInfoSql, userInfo.username)
       .then(result => {
         if (!result || result.length === 0) return res.status(400).send(new ResBody(400, null, null, '用户名不存在!'))
         const hash = result[0].password
-        const mobile = result[0].mobile
-        const username = userInfo.username
+        userInfo.id = result[0].id
+        userInfo.mobile = result[0].mobile
         if (bcrypt.compareSync(req.body.password, hash)) {
-          const secret = config.secret
-          let token = jwt.sign(userInfo, secret, {
-            expiresIn: 2592000 //一个月到期时间
-          })
-          token = 'Bearer ' + token
-          res.send(new ResBody(200, { token, username, mobile }, '登录成功!', null))
+          userInfo.token = result[0].token
+          if (!userInfo.token || Date.now() - new Date(result[0].ctime) >= config.tokenExpire) {
+            userInfo.token = jwt.sign({ secret }, secret, {
+              expiresIn: config.tokenExpire
+            })
+            let tokenInfo = {
+              user_id: userInfo.id,
+              token: userInfo.token,
+              ctime: moment().format('YYYY-MM-DD HH:mm:ss')
+            }
+            sqlExcute(addUserTokenSql, tokenInfo)
+          }
+          res.send(new ResBody(200, userInfo, '登录成功!', null))
         } else {
           res.status(400).send(new ResBody(400, null, '登录失败!密码错误!', null));
         }
