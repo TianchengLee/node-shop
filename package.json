@@ -1,0 +1,31 @@
+{
+  "name": "node-shop",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "express": "~4.16.0",
+    "file-stream-rotator": "^0.4.1",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0"
+  },
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itcast-wh/node-shop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/itcast-wh/node-shop/issues"
+  },
+  "homepage": "https://github.com/itcast-wh/node-shop#readme",
+  "description": ""
+}
