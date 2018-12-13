@@ -10,9 +10,9 @@ const cors = require('cors')
 const expressJwt = require('express-jwt')
 const mount = require('mount-routes')
 
-const getUserInfoInterceptor = require('./controller').users.getUserInfoInterceptor
+const usersMiddleware = require('./middlewares/users')
 
-const commonMidleware = require('./midlewares/common')
+const commonMiddleware = require('./middlewares/common')
 
 const app = express()
 
@@ -30,8 +30,8 @@ const accessLogStream = FileStreamRotator.getStream({
 
 
 // 响应错误和响应成功的方法封装
-app.use(commonMidleware.normal)
-app.use(commonMidleware.err)
+app.use(commonMiddleware.normal)
+app.use(commonMiddleware.err)
 app.use(cors())
 app.use(logger('dev'))
 app.use(logger('combined', { stream: accessLogStream }))
@@ -80,7 +80,8 @@ app.use((err, req, res, next) => {
   }
 })
 
-app.use(getUserInfoInterceptor)
+// 获取用户信息存储在req.userInfo中
+app.use(usersMiddleware.getUserInfo)
 
 mount(app, path.join(process.cwd(), "/routes"), true)
 

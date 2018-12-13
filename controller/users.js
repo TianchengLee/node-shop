@@ -17,12 +17,6 @@ const getUserInfoSql = `SELECT u.id, u.password, u.mobile ,ua.token, ua.ctime
                         ON u.id = ua.user_id 
                         WHERE username = ?
                         ORDER BY ua.ctime DESC`
-const getUserInfoByTokenSql = `SELECT u.id, u.username, u.mobile, ua.token
-                              FROM users AS u 
-                              LEFT JOIN users_auth AS ua 
-                              ON u.id = ua.user_id 
-                              WHERE token = ?
-                              ORDER BY ua.ctime DESC`
 const updateUserInfoSql = `UPDATE users
                           SET ?
                           WHERE id = ?`
@@ -135,15 +129,7 @@ module.exports = {
         }
       })
   },
-  getUserInfoInterceptor(req, res, next) {
-    sqlExcute(getUserInfoByTokenSql, req.headers.authorization)
-      .then(result => {
-        req.userInfo = result[0]
-        next()
-      }, err => {
-        next()
-      })
-  },
+  
   getUserInfoAction(req, res) {
     res.sendSucc('获取用户信息成功!', req.userInfo)
   },
