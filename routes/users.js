@@ -10,5 +10,6 @@ router.get('/getUserInfo', ctrl.users.getUserInfoAction)
 router.post('/updateUserInfo', ctrl.users.updateUserInfoAction)
 router.post('/updatePassword', ctrl.users.updatePasswordAction)
 router.get('/getReceiverAddress', ctrl.users.getReceiverAddressAction)
+router.get('/deleteReceiverAddress/:id', ctrl.users.deleteReceiverAddressAction)
 
 module.exports = router;

@@ -31,6 +31,10 @@ const getReceiverAddressSql = `SELECT id, receiver_name, mobile, postcode, provi
                               FROM receiver_address
                               WHERE del_state = 0 
                               AND user_id = ?`
+const deleteReceiverAddressSql = `UPDATE receiver_address
+                                  SET del_state = 1
+                                  WHERE id = ?`
+
 module.exports = {
   registerAction(req, res) {
     if (!req.session.vCode || !req.body.vCode || req.session.vCode.toLowerCase() != req.body.vCode.toLowerCase()) return res.status(400).send(new ResBody(400, null, null, '验证码错误!'))
@@ -189,6 +193,15 @@ module.exports = {
     sqlExcute(getReceiverAddressSql, req.userInfo.id)
       .then(result => {
         res.send(new ResBody(200, result, '获取收货人列表成功!', null))
+      })
+  },
+  deleteReceiverAddressAction(req, res) {
+    const receiverId = req.params.id
+    sqlExcute(deleteReceiverAddressSql, receiverId)
+      .then(result => {
+        console.log(result)
+        if (result.affectedRows) res.send(new ResBody(200, null, '删除收货人成功!', null))
+        else res.status(400).send(new ResBody(400, null, '删除收货人失败!请检查id是否正确!', null))
       })
   }
 }
