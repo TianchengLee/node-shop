@@ -66,10 +66,10 @@ app.use(expressJwt({
 }).unless({
   //除了这些地址, 其他的URL都需要验证, 支持正则
   path: [
-    '/users/login',
-    '/users/register',
-    '/users/getVCode',
-    /\/users\/checkUsername\/\w*/
+    '/v1/users/login',
+    '/v1/users/register',
+    '/v1/users/getVCode',
+    /\/v1\/users\/checkUsername\/\w*/
   ]
 }))
 
