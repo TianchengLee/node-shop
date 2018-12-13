@@ -29,6 +29,13 @@ const deleteReceiverAddressSql = `UPDATE receiver_address
                                   WHERE id = ?`
 const addReceiverAddressSql = `INSERT INTO receiver_address SET ?`
 
+const getReceiverAddressByIdSql = getReceiverAddressSql + ' AND id = ?'
+
+const updateReceiverAddressSql = `UPDATE receiver_address
+                                  SET ?
+                                  WHERE id = ?
+                                  AND user_id = ?`
+
 module.exports = {
   registerAction(req, res) {
 
@@ -221,7 +228,7 @@ module.exports = {
       })
   },
   addReceiverAddressAction(req, res) {
-    
+
     let attrs = ['receiver_name', 'mobile', 'postcode', 'province', 'city', 'area', 'detailed_address']
 
     let result = req.checkFormBody(attrs)
@@ -236,6 +243,26 @@ module.exports = {
       .then(result => {
         if (result.affectedRows) res.sendSucc('添加收货人成功!', receiverInfo)
         else throw new Error('添加收货人失败!')
+      })
+      .catch(e => {
+        res.sendErr(400, e.message)
+      })
+  },
+  updateReceiverAddressAction(req, res) {
+    const receiverId = req.params.id
+    let receiverInfo = null
+    sqlExcute(getReceiverAddressByIdSql, [req.userInfo.id, receiverId])
+      .then(result => {
+        if (!result || result.length === 0) throw new Error('收货人信息不存在!')
+        receiverInfo = result[0]
+        for (let k in receiverInfo) {
+          req.body[k] && (receiverInfo[k] = req.body[k])
+        }
+        return sqlExcute(updateReceiverAddressSql, [receiverInfo, receiverInfo.id, req.userInfo.id])
+      })
+      .then(result => {
+        if (result.affectedRows) res.sendSucc('修改收货人信息成功!', receiverInfo)
+        else throw new Error('修改收货人失败!')
       })
       .catch(e => {
         res.sendErr(400, e.message)
