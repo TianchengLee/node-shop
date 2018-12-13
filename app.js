@@ -8,10 +8,11 @@ const FileStreamRotator = require('file-stream-rotator');
 const session = require('express-session')
 const cors = require('cors')
 const expressJwt = require('express-jwt')
-var mount = require('mount-routes')
+const mount = require('mount-routes')
 
-const ResBody = require('./models/ResBody')
 const getUserInfoInterceptor = require('./controller').users.getUserInfoInterceptor
+
+const commonMidleware = require('./midlewares/common')
 
 const app = express()
 
@@ -27,6 +28,10 @@ const accessLogStream = FileStreamRotator.getStream({
   verbose: false
 })
 
+
+// 响应错误和响应成功的方法封装
+app.use(commonMidleware.normal)
+app.use(commonMidleware.err)
 app.use(cors())
 app.use(logger('dev'))
 app.use(logger('combined', { stream: accessLogStream }))
@@ -68,12 +73,10 @@ app.use(expressJwt({
   ]
 }))
 
-//拦截器
 app.use((err, req, res, next) => {
   //当token验证失败时会抛出如下错误
   if (err.name === 'UnauthorizedError') {
-    //这个需要根据自己的业务逻辑来处理（ 具体的err值 请看下面）
-    res.status(401).send(new ResBody(401, null, null, '无效的token!'))
+    res.sendErr(401, '无效的token!')
   }
 })
 
