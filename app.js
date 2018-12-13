@@ -28,10 +28,10 @@ const accessLogStream = FileStreamRotator.getStream({
   verbose: false
 })
 
-
 // 响应错误和响应成功的方法封装
-app.use(commonMiddleware.normal)
-app.use(commonMiddleware.err)
+app.use(commonMiddleware.sendSucc)
+app.use(commonMiddleware.sendErr)
+app.use(commonMiddleware.checkFormBody)
 app.use(cors())
 app.use(logger('dev'))
 app.use(logger('combined', { stream: accessLogStream }))

@@ -33,8 +33,8 @@ module.exports = {
   registerAction(req, res) {
 
     let attrs = ['username', 'password', 'vCode', 'mobile']
-
-    if (!checkFormBody(req, res, attrs)) return
+    let result = req.checkFormBody(attrs)
+    if (!result.pass) return res.sendErr(400, result.message)
 
     if (!req.session.vCode || req.session.vCode.toLowerCase() != req.body.vCode.toLowerCase()) return res.sendErr(400, '验证码错误!')
 
@@ -99,7 +99,8 @@ module.exports = {
 
     let attrs = ['username']
 
-    if (!checkFormBody(req, res, attrs)) return
+    let result = req.checkFormBody(attrs)
+    if (!result.pass) return res.sendErr(400, result.message)
 
     sqlExcute(getUserCountSql, req.params.username)
       .then(result => {
@@ -114,7 +115,8 @@ module.exports = {
 
     let attrs = ['username', 'password']
 
-    if (!checkFormBody(req, res, attrs)) return
+    let result = req.checkFormBody(attrs)
+    if (!result.pass) return res.sendErr(400, result.message)
 
     const userInfo = {
       username: req.body.username,
@@ -158,7 +160,8 @@ module.exports = {
 
     let attrs = ['mobile']
 
-    if (!checkFormBody(req, res, attrs)) return
+    let result = req.checkFormBody(attrs)
+    if (!result.pass) return res.sendErr(400, result.message)
 
     let userInfo = { mobile: req.body.mobile }
 
@@ -177,7 +180,8 @@ module.exports = {
 
     let attrs = ['oldPassword', 'newPassword']
 
-    if (!checkFormBody(req, res, attrs)) return
+    let result = req.checkFormBody(attrs)
+    if (!result.pass) return res.sendErr(400, result.message)
 
     sqlExcute(getUserInfoSql, req.userInfo.username)
       .then(result => {
@@ -217,8 +221,12 @@ module.exports = {
       })
   },
   addReceiverAddressAction(req, res) {
+    
     let attrs = ['receiver_name', 'mobile', 'postcode', 'province', 'city', 'area', 'detailed_address']
-    if (!checkFormBody(req, res, attrs)) return
+
+    let result = req.checkFormBody(attrs)
+    if (!result.pass) return res.sendErr(400, result.message)
+
     let receiverInfo = {}
     attrs.forEach(attr => {
       receiverInfo[attr] = req.body[attr]
@@ -233,31 +241,4 @@ module.exports = {
         res.sendErr(400, e.message)
       })
   }
-}
-
-function checkFormBody(req, res, attrs = []) {
-  let pass = true
-  let results = []
-
-  attrs.forEach(item => {
-    if (!(item in req.body) && !(item in req.params) && !(item in req.query)) {
-      results.push(item)
-      pass = false
-    }
-  })
-
-  let checkBodies = [req.body, req.params, req.query]
-
-  checkBodies.forEach(item => {
-    for (let k in item) {
-      let val = item[k]
-      if (!val || !val.toString().trim()) {
-        results.push(k)
-        pass = false
-      }
-    }
-  })
-
-  if (!pass) res.sendErr(400, results.join(',') + '未填写!')
-  return pass
 }
