@@ -9,5 +9,6 @@ router.post('/login', ctrl.users.loginAction)
 router.get('/getUserInfo', ctrl.users.getUserInfoAction)
 router.post('/updateUserInfo', ctrl.users.updateUserInfoAction)
 router.post('/updatePassword', ctrl.users.updatePasswordAction)
+router.get('/getReceiverAddress', ctrl.users.getReceiverAddressAction)
 
 module.exports = router;

@@ -27,7 +27,10 @@ const getUserInfoByTokenSql = `SELECT u.id, u.username, u.mobile, ua.token
 const updateUserInfoSql = `UPDATE users
                           SET ?
                           WHERE id = ?`
-
+const getReceiverAddressSql = `SELECT id, receiver_name, mobile, postcode, province, city, area, detailed_address 
+                              FROM receiver_address
+                              WHERE del_state = 0 
+                              AND user_id = ?`
 module.exports = {
   registerAction(req, res) {
     if (!req.session.vCode || !req.body.vCode || req.session.vCode.toLowerCase() != req.body.vCode.toLowerCase()) return res.status(400).send(new ResBody(400, null, null, '验证码错误!'))
@@ -180,6 +183,12 @@ module.exports = {
         }
       }, err => {
         res.status(500).send(new ResBody(500, null, null, '修改密码失败!内部错误:' + err.message));
+      })
+  },
+  getReceiverAddressAction(req, res) {
+    sqlExcute(getReceiverAddressSql, req.userInfo.id)
+      .then(result => {
+        res.send(new ResBody(200, result, '获取收货人列表成功!', null))
       })
   }
 }
