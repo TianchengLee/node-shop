@@ -76,6 +76,7 @@ module.exports = {
             ctime
           }
           userInfo.token = token
+          userInfo.id = result.insertId
           return sqlExcute(addUserTokenSql, tokenInfo)
         }
       })
@@ -93,13 +94,13 @@ module.exports = {
     const codeConfig = {
       size: 4,// 验证码长度
       ignoreChars: '0o1i', // 验证码字符中排除 0o1i
-      noise: 8, // 干扰线条的数量
+      noise: 5, // 干扰线条的数量
       width: 100
     }
     const vCode = svgCaptcha.create(codeConfig)
     req.session.vCode = vCode.text
     console.log(vCode.text)
-    res.type('svg')
+    // res.type('svg')
     res.send(vCode.data)
   },
   checkUsernameAction(req, res) {
@@ -111,8 +112,8 @@ module.exports = {
 
     sqlExcute(getUserCountSql, req.params.username)
       .then(result => {
-        if (result[0].count > 0) throw new Error('用户名已存在!')
-        res.sendSucc('用户名可用!')
+        if (result[0].count > 0) throw new Error(req.params.username + '用户名已存在!')
+        res.sendSucc(req.params.username + '用户名可用!')
       })
       .catch(e => {
         res.sendErr(400, e.message)
@@ -241,8 +242,12 @@ module.exports = {
     receiverInfo.user_id = req.userInfo.id
     sqlExcute(addReceiverAddressSql, receiverInfo)
       .then(result => {
-        if (result.affectedRows) res.sendSucc('添加收货人成功!', receiverInfo)
-        else throw new Error('添加收货人失败!')
+        if (result.affectedRows) {
+          receiverInfo.id = result.insertId
+          res.sendSucc('添加收货人成功!', receiverInfo)
+        } else {
+          throw new Error('添加收货人失败!')
+        }
       })
       .catch(e => {
         res.sendErr(400, e.message)

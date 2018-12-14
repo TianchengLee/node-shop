@@ -66,12 +66,15 @@ app.use(expressJwt({
 }).unless({
   //除了这些地址, 其他的URL都需要验证, 支持正则
   path: [
+    /\/apidoc\/\w*/,
     '/v1/users/login',
     '/v1/users/register',
     '/v1/users/getVCode',
     /\/v1\/users\/checkUsername\/\w*/
   ]
 }))
+
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.use((err, req, res, next) => {
   //当token验证失败时会抛出如下错误
@@ -84,8 +87,6 @@ app.use((err, req, res, next) => {
 app.use(usersMiddleware.getUserInfo)
 
 mount(app, path.join(process.cwd(), "/routes"), true)
-
-app.use(express.static(path.join(__dirname, 'public')))
 
 app.use((req, res, next) => {
   next(createError(404))

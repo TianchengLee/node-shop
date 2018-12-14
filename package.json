@@ -36,5 +36,9 @@
     "url": "https://github.com/itcast-wh/node-shop/issues"
   },
   "homepage": "https://github.com/itcast-wh/node-shop#readme",
-  "description": ""
+  "description": "",
+  "apidoc": {
+    "title": "node-shop接口文档",
+    "url": "http://localhost:9999"
+  }
 }
