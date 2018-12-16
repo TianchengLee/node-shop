@@ -16,7 +16,8 @@ const getUserInfoSql = `SELECT u.id, u.password, u.mobile ,ua.token, ua.ctime
                         LEFT JOIN users_auth AS ua 
                         ON u.id = ua.user_id 
                         WHERE username = ?
-                        ORDER BY ua.ctime DESC`
+                        ORDER BY ua.ctime DESC
+                        LIMIT 0, 1`
 const updateUserInfoSql = `UPDATE users
                           SET ?
                           WHERE id = ?`
@@ -40,8 +41,8 @@ module.exports = {
   registerAction(req, res) {
 
     let attrs = ['username', 'password', 'vCode', 'mobile']
-    let result = req.checkFormBody(attrs)
-    if (!result.pass) return res.sendErr(400, result.message)
+    
+    if (!req.checkFormBody(attrs, res)) return
 
     if (!req.session.vCode || req.session.vCode.toLowerCase() != req.body.vCode.toLowerCase()) return res.sendErr(400, '验证码错误!')
 
@@ -107,8 +108,7 @@ module.exports = {
 
     let attrs = ['username']
 
-    let result = req.checkFormBody(attrs)
-    if (!result.pass) return res.sendErr(400, result.message)
+    if (!req.checkFormBody(attrs, res)) return
 
     sqlExcute(getUserCountSql, req.params.username)
       .then(result => {
@@ -123,8 +123,7 @@ module.exports = {
 
     let attrs = ['username', 'password']
 
-    let result = req.checkFormBody(attrs)
-    if (!result.pass) return res.sendErr(400, result.message)
+    if (!req.checkFormBody(attrs, res)) return
 
     const userInfo = {
       username: req.body.username,
@@ -168,8 +167,7 @@ module.exports = {
 
     let attrs = ['mobile']
 
-    let result = req.checkFormBody(attrs)
-    if (!result.pass) return res.sendErr(400, result.message)
+    if (!req.checkFormBody(attrs, res)) return
 
     let userInfo = { mobile: req.body.mobile }
 
@@ -188,8 +186,7 @@ module.exports = {
 
     let attrs = ['oldPassword', 'newPassword']
 
-    let result = req.checkFormBody(attrs)
-    if (!result.pass) return res.sendErr(400, result.message)
+    if (!req.checkFormBody(attrs, res)) return
 
     sqlExcute(getUserInfoSql, req.userInfo.username)
       .then(result => {
@@ -232,8 +229,7 @@ module.exports = {
 
     let attrs = ['receiver_name', 'mobile', 'postcode', 'province', 'city', 'area', 'detailed_address']
 
-    let result = req.checkFormBody(attrs)
-    if (!result.pass) return res.sendErr(400, result.message)
+    if (!req.checkFormBody(attrs, res)) return
 
     let receiverInfo = {}
     attrs.forEach(attr => {

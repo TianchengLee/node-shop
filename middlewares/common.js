@@ -8,7 +8,7 @@ function sendSucc(msg, data = null) {
   this.status(200).send(new ResBody(200, data, msg, null))
 }
 
-function checkFormBody(attrs = []) {
+function checkFormBody(attrs = [], res) {
   let pass = true
   let keywords = []
 
@@ -30,8 +30,8 @@ function checkFormBody(attrs = []) {
       }
     }
   })
-
-  return { pass, message: keywords.join(',') + '未填写!' }
+  !pass && res && res.send(400, keywords.join(',') + '未填写!')
+  return pass
 }
 
 module.exports = {
