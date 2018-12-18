@@ -134,11 +134,12 @@ module.exports = {
       .then(result => {
         if (!result || result.length === 0) throw new Error('用户名不存在!')
         const hash = result[0].password
-        userInfo.id = result[0].id
-        userInfo.nickname = result[0].nickname
-        userInfo.mobile = result[0].mobile
         if (bcrypt.compareSync(req.body.password, hash)) {
+          userInfo.id = result[0].id
+          userInfo.nickname = result[0].nickname
+          userInfo.mobile = result[0].mobile
           userInfo.token = result[0].token
+          console.log(result[0].ctime)
           if (!userInfo.token || Date.now() - new Date(result[0].ctime) >= config.tokenExpire) {
             userInfo.token = jwt.sign({ secret }, secret, {
               expiresIn: config.tokenExpire

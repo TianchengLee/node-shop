@@ -1241,5 +1241,55 @@ define({ "api": [
     "version": "1.0.0",
     "filename": "routes/v1/news.js",
     "groupTitle": "4_News_Info"
+  },
+  {
+    "type": "get",
+    "url": "/v1/goods/getGoodsCategories",
+    "title": "获取商品分类列表信息",
+    "description": "<p>获取商品分类列表信息</p>",
+    "name": "getGoodsCategories",
+    "group": "5_Goods_Info",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>状态码</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "json",
+            "optional": false,
+            "field": "data",
+            "description": "<p>分类数据</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "succMsg",
+            "description": "<p>成功消息</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n    \"status\": 200,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"时尚\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"男装\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"女装\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"男鞋\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"女鞋\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"箱包手袋\"\n        },\n        {\n            \"id\": 7,\n            \"name\": \"手机数码\"\n        },\n        {\n            \"id\": 8,\n            \"name\": \"电脑办公\"\n        },\n        {\n            \"id\": 9,\n            \"name\": \"家用电器\"\n        },\n        {\n            \"id\": 10,\n            \"name\": \"生鲜食品\"\n        }\n      ],\n      \"succMsg\": \"获取商品分类列表数据成功\",\n      \"errMsg\": null\n  }",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "/v1/goods/getGoodsCategories"
+      }
+    ],
+    "version": "1.0.0",
+    "filename": "routes/v1/goods.js",
+    "groupTitle": "5_Goods_Info"
   }
 ] });
