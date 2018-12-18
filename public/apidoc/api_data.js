@@ -893,6 +893,83 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/v1/news/getCommentList/:id",
+    "title": "获取评论列表",
+    "description": "<p>获取评论列表</p>",
+    "name": "getCommentList",
+    "group": "4_News_Info",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>新闻id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "number",
+            "optional": false,
+            "field": "page",
+            "description": "<p>页码数</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "number",
+            "optional": false,
+            "field": "pageSize",
+            "description": "<p>每页条数</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>状态码</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "json",
+            "optional": false,
+            "field": "data",
+            "description": "<p>评论列表数据</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "succMsg",
+            "description": "<p>成功消息</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n  \"status\": 200,\n  \"data\": [\n        {\n            \"id\": 1,\n            \"comment\": \"这个手机真的太赞了!\",\n            \"news_id\": 1\n        }\n    ],\n \"succMsg\": \"获取新闻列表数据成功!\",\n \"errMsg\": null\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "/v1/news/getCommentList/:id"
+      }
+    ],
+    "version": "1.0.0",
+    "filename": "routes/v1/news.js",
+    "groupTitle": "4_News_Info"
+  },
+  {
+    "type": "get",
     "url": "/v1/news/getNewsCategories",
     "title": "获取新闻分类列表",
     "description": "<p>获取新闻分类列表</p>",

@@ -112,4 +112,34 @@ router.get('/getNewsCategories', ctrl.news.getNewsCategoriesAction)
  */
 router.get('/getNewsInfo/:id', ctrl.news.getNewsInfoAction)
 
+/**
+ * @api {get} /v1/news/getCommentList/:id 获取评论列表
+ * @apiDescription 获取评论列表
+ * @apiName getCommentList
+ * @apiGroup 4.News-Info
+ * @apiParam {number} id 新闻id
+ * @apiParam {number} page 页码数
+ * @apiParam {number} pageSize 每页条数
+ * @apiSuccess {number} status 状态码
+ * @apiSuccess {json} data 评论列表数据
+ * @apiSuccess {string} succMsg 成功消息
+ * @apiSuccess {string} succMsg 错误消息
+ * @apiSuccessExample {json} Success-Response:
+ * {
+ *   "status": 200,
+ *   "data": [
+        {
+            "id": 1,
+            "comment": "这个手机真的太赞了!",
+            "news_id": 1
+        }
+    ],
+ *  "succMsg": "获取新闻列表数据成功!",
+ *  "errMsg": null
+ *}
+ * @apiSampleRequest /v1/news/getCommentList/:id
+ * @apiVersion 1.0.0
+ */
+router.get('/getCommentList/:id', ctrl.news.getCommentListAction)
+
 module.exports = router;

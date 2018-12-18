@@ -35,6 +35,12 @@ const getNewsInfoByIdSql = `SELECT id, title, icon, description, content views
                             LIMIT 0, 1`
 
 const getNewsCategoriesSql = `SELECT * FROM news_cate`
+
+const getCommentListSql = `SELECT id, comment, news_id 
+                          FROM news_comment 
+                          WHERE del_state = 0
+                          AND news_id = ?
+                          LIMIT ?, ?`
 function checkNewsSql(req) {
 
   const pageSize = parseInt(req.query.pageSize)
@@ -75,13 +81,25 @@ module.exports = {
       .catch(e => {
         res.sendErr(400, e.message)
       })
-    },
-    getNewsInfoAction(req, res) {
-      const newsId = parseInt(req.params.id)
-      if (!newsId) return res.sendErr(400, '请传入正确的新闻Id!')
-      sqlExcute(getNewsInfoByIdSql, newsId)
+  },
+  getNewsInfoAction(req, res) {
+    const newsId = parseInt(req.params.id)
+    if (!newsId) return res.sendErr(400, '请传入正确的新闻Id!')
+    sqlExcute(getNewsInfoByIdSql, newsId)
       .then(result => {
         res.sendSucc('获取新闻详情成功!', result[0])
+      })
+      .catch(e => {
+        res.sendErr(400, e.message)
+      })
+  },
+  getCommentListAction(req, res) {
+    req.checkFormBody(['id', 'page', 'pageSize'], res)
+
+    const pageSize = parseInt(req.query.pageSize)
+    sqlExcute(getCommentListSql, [req.params.id, (req.query.page - 1) * pageSize, pageSize])
+      .then(result => {
+        res.sendSucc('获取评论列表成功!', result)
       })
       .catch(e => {
         res.sendErr(400, e.message)
