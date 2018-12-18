@@ -161,7 +161,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n  \"status\": 200,\n  \"data\": {\n      \"username\": \"ltc\",\n      \"id\": 1,\n      \"mobile\": \"13888888888\",\n      \"token\":\"eyJzxcciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXQiOiJpdGNhc3Qtd2giLCJpYXQiOjE1NDQ3OTQwMzgsImV4cCI6MTU0NzM4NjAzOH0.BTSqwVIHsT8UPT2T7AYVCnG7pc_zCv9UrBAIoCmcR1Y\",\n  },\n  \"succMsg\": \"登录成功!\",\n  \"errMsg\": null\n}",
+          "content": "{\n  \"status\": 200,\n  \"data\": {\n      \"nickname\": \"ltc\",\n      \"username\": \"ltc\",\n      \"id\": 1,\n      \"mobile\": \"13888888888\",\n      \"token\":\"eyJzxcciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXQiOiJpdGNhc3Qtd2giLCJpYXQiOjE1NDQ3OTQwMzgsImV4cCI6MTU0NzM4NjAzOH0.BTSqwVIHsT8UPT2T7AYVCnG7pc_zCv9UrBAIoCmcR1Y\",\n  },\n  \"succMsg\": \"登录成功!\",\n  \"errMsg\": null\n}",
           "type": "json"
         }
       ]
@@ -191,6 +191,13 @@
             "optional": false,
             "field": "username",
             "description": "<p>用户名</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "nickname",
+            "description": "<p>昵称</p>"
           },
           {
             "group": "Parameter",
@@ -252,7 +259,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n  \"status\": 200,\n  \"data\": {\n      \"ctime\": \"2018-12-14 21:27:18\",\n      \"username\": \"ltc\",\n      \"mobile\": \"13888888888\",\n      \"token\":\"eyJzxcciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXQiOiJpdGNhc3Qtd2giLCJpYXQiOjE1NDQ3OTQwMzgsImV4cCI6MTU0NzM4NjAzOH0.BTSqwVIHsT8UPT2T7AYVCnG7pc_zCv9UrBAIoCmcR1Y\",\n      \"id\": 1\n  },\n  \"succMsg\": \"注册成功!\",\n  \"errMsg\": null\n}",
+          "content": "{\n  \"status\": 200,\n  \"data\": {\n      \"ctime\": \"2018-12-14 21:27:18\",\n      \"nickname\": \"ltc\",\n      \"username\": \"ltc\",\n      \"mobile\": \"13888888888\",\n      \"token\":\"eyJzxcciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXQiOiJpdGNhc3Qtd2giLCJpYXQiOjE1NDQ3OTQwMzgsImV4cCI6MTU0NzM4NjAzOH0.BTSqwVIHsT8UPT2T7AYVCnG7pc_zCv9UrBAIoCmcR1Y\",\n      \"id\": 1\n  },\n  \"succMsg\": \"注册成功!\",\n  \"errMsg\": null\n}",
           "type": "json"
         }
       ]
@@ -315,7 +322,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n \"status\": 200,\n \"data\": {\n     \"id\": 33,\n     \"username\": \"ltc\",\n     \"mobile\": \"13888888888\",\n     \"token\":\"eyJzxcciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXQiOiJpdGNhc3Qtd2giLCJpYXQiOjE1NDQ3OTQwMzgsImV4cCI6MTU0NzM4NjAzOH0.BTSqwVIHsT8UPT2T7AYVCnG7pc_zCv9UrBAIoCmcR1Y\",\n },\n \"succMsg\": \"获取用户信息成功!\",\n \"errMsg\": null\n}",
+          "content": "{\n \"status\": 200,\n \"data\": {\n     \"id\": 33,\n     \"nickname\": \"ltc\",\n     \"username\": \"ltc\",\n     \"mobile\": \"13888888888\",\n     \"token\":\"eyJzxcciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXQiOiJpdGNhc3Qtd2giLCJpYXQiOjE1NDQ3OTQwMzgsImV4cCI6MTU0NzM4NjAzOH0.BTSqwVIHsT8UPT2T7AYVCnG7pc_zCv9UrBAIoCmcR1Y\",\n },\n \"succMsg\": \"获取用户信息成功!\",\n \"errMsg\": null\n}",
           "type": "json"
         }
       ]
@@ -488,7 +495,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n  \"status\": 200,\n  \"data\": {\n      \"id\": 1,\n      \"username\": \"ltc\",\n      \"mobile\": \"13888888888\",\n      \"token\":\"eyJzxcciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXQiOiJpdGNhc3Qtd2giLCJpYXQiOjE1NDQ3OTQwMzgsImV4cCI6MTU0NzM4NjAzOH0.BTSqwVIHsT8UPT2T7AYVCnG7pc_zCv9UrBAIoCmcR1Y\",\n  },\n  \"succMsg\": \"用户信息修改成功!\",\n  \"errMsg\": null\n}",
+          "content": "{\n  \"status\": 200,\n  \"data\": {\n      \"id\": 1,\n      \"nickname\": \"ltc\",\n      \"username\": \"ltc\",\n      \"mobile\": \"13888888888\",\n      \"token\":\"eyJzxcciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXQiOiJpdGNhc3Qtd2giLCJpYXQiOjE1NDQ3OTQwMzgsImV4cCI6MTU0NzM4NjAzOH0.BTSqwVIHsT8UPT2T7AYVCnG7pc_zCv9UrBAIoCmcR1Y\",\n  },\n  \"succMsg\": \"用户信息修改成功!\",\n  \"errMsg\": null\n}",
           "type": "json"
         }
       ]

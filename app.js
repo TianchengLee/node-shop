@@ -71,7 +71,7 @@ app.use(expressJwt({
     '/v1/users/register',
     '/v1/users/getVCode',
     /\/v1\/users\/checkUsername\/\w*/,
-    /\/news\/\w*/
+    /\/news\/get\w*/
   ]
 }))
 

@@ -1,6 +1,7 @@
 const sqlExcute = require('../db')
+const moment = require('moment')
 
-const getNewsSql = `SELECT id, title, icon, description, views 
+const getNewsSql = `SELECT id, title, ctime, icon, description, views 
                     FROM news
                     WHERE del_state = 0
                     LIMIT ?, ?;
@@ -8,27 +9,29 @@ const getNewsSql = `SELECT id, title, icon, description, views
                     FROM news
                     WHERE del_state = 0`
 
-const getNewsByKeysSql = `SELECT id, title, icon, description, views 
+const getNewsByKeysSql = `SELECT id, title, ctime, icon, description, views 
                           FROM news
                           WHERE del_state = 0
                           AND CONCAT(title, description, content) LIKE ?
+                          ORDER BY ctime desc
                           LIMIT ?, ?;
                           SELECT COUNT(*) as count 
                           FROM news
                           WHERE del_state = 0
                           AND CONCAT(title, description, content) LIKE ?`
 
-const getNewsByCategoriesSql = `SELECT id, title, icon, description, views 
+const getNewsByCategoriesSql = `SELECT id, title, ctime, icon, description, views 
                           FROM news
                           WHERE del_state = 0
                           AND cate_id = ?
+                          ORDER BY ctime desc
                           LIMIT ?, ?;
                           SELECT COUNT(*) as count 
                           FROM news
                           WHERE del_state = 0
                           AND cate_id = ?`
 
-const getNewsInfoByIdSql = `SELECT id, title, icon, description, content views
+const getNewsInfoByIdSql = `SELECT id, title, ctime, icon, description, content views
                             FROM news
                             WHERE del_state = 0
                             AND id = ?
@@ -36,10 +39,13 @@ const getNewsInfoByIdSql = `SELECT id, title, icon, description, content views
 
 const getNewsCategoriesSql = `SELECT * FROM news_cate`
 
-const getCommentListSql = `SELECT id, comment, news_id 
-                          FROM news_comment 
+const getCommentListSql = `SELECT nc.id, nc.comment, nc.user_id, nc.ctime, u.nickname
+                          FROM news_comment as nc
+                          LEFT JOIN users as u
+                          ON u.id = nc.user_id
                           WHERE del_state = 0
                           AND news_id = ?
+                          ORDER BY nc.ctime desc
                           LIMIT ?, ?;
                           SELECT COUNT(*) as count 
                           FROM news_comment
@@ -100,7 +106,7 @@ module.exports = {
       })
   },
   getCommentListAction(req, res) {
-    req.checkFormBody(['id', 'page', 'pageSize'], res)
+    if (!req.checkFormBody(['id', 'page', 'pageSize'], res)) return
 
     const pageSize = parseInt(req.query.pageSize)
     sqlExcute(getCommentListSql, [req.params.id, (req.query.page - 1) * pageSize, pageSize, req.params.id])
@@ -112,15 +118,16 @@ module.exports = {
       })
   },
   postCommentAction(req, res) {
-    req.checkFormBody(['id', 'comment'], res)
-
-    const news_id = req.params.id
+    if (!req.checkFormBody(['id', 'comment'], res)) reutrn
 
     const comment = req.body.comment
+    const news_id = req.params.id
+    const user_id = req.userInfo.id
+    const ctime = moment().format('YYYY-MM-DD HH:mm:ss')
 
     sqlExcute(getNewsInfoByIdSql, news_id)
       .then(result => {
-        if (result.length > 0) return sqlExcute(postCommentSql, { news_id, comment })
+        if (result.length > 0) return sqlExcute(postCommentSql, { comment, ctime, news_id, user_id })
       })
       .then(result => {
         if (!result) throw new Error('新闻信息不存在!请传入正确的新闻id!')

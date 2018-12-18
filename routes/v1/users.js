@@ -8,6 +8,7 @@ const ctrl = require('../../controller')
  * @apiName register
  * @apiGroup 1.Users-Sign
  * @apiParam {string} username 用户名
+ * @apiParam {string} nickname 昵称
  * @apiParam {string} password 密码
  * @apiParam {string} vCode 验证码
  * @apiParam {string} mobile 手机号
@@ -20,6 +21,7 @@ const ctrl = require('../../controller')
  *   "status": 200,
  *   "data": {
  *       "ctime": "2018-12-14 21:27:18",
+ *       "nickname": "ltc",
  *       "username": "ltc",
  *       "mobile": "13888888888",
  *       "token":"eyJzxcciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXQiOiJpdGNhc3Qtd2giLCJpYXQiOjE1NDQ3OTQwMzgsImV4cCI6MTU0NzM4NjAzOH0.BTSqwVIHsT8UPT2T7AYVCnG7pc_zCv9UrBAIoCmcR1Y",
@@ -83,6 +85,7 @@ router.get('/checkUsername/:username', ctrl.users.checkUsernameAction)
  * {
  *   "status": 200,
  *   "data": {
+ *       "nickname": "ltc",
  *       "username": "ltc",
  *       "id": 1,
  *       "mobile": "13888888888",
@@ -111,6 +114,7 @@ router.post('/login', ctrl.users.loginAction)
  *  "status": 200,
  *  "data": {
  *      "id": 33,
+ *      "nickname": "ltc",
  *      "username": "ltc",
  *      "mobile": "13888888888",
  *      "token":"eyJzxcciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXQiOiJpdGNhc3Qtd2giLCJpYXQiOjE1NDQ3OTQwMzgsImV4cCI6MTU0NzM4NjAzOH0.BTSqwVIHsT8UPT2T7AYVCnG7pc_zCv9UrBAIoCmcR1Y",
@@ -139,6 +143,7 @@ router.get('/getUserInfo', ctrl.users.getUserInfoAction)
  *   "status": 200,
  *   "data": {
  *       "id": 1,
+ *       "nickname": "ltc",
  *       "username": "ltc",
  *       "mobile": "13888888888",
  *       "token":"eyJzxcciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXQiOiJpdGNhc3Qtd2giLCJpYXQiOjE1NDQ3OTQwMzgsImV4cCI6MTU0NzM4NjAzOH0.BTSqwVIHsT8UPT2T7AYVCnG7pc_zCv9UrBAIoCmcR1Y",

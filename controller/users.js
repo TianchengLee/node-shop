@@ -11,7 +11,7 @@ const moment = require('moment')
 const getUserCountSql = 'SELECT count(*) as count FROM users WHERE username = ?'
 const addUserSql = 'INSERT INTO users SET ?'
 const addUserTokenSql = 'INSERT INTO users_auth SET ?'
-const getUserInfoSql = `SELECT u.id, u.password, u.mobile ,ua.token, ua.ctime
+const getUserInfoSql = `SELECT u.id, u.nickname, u.password, u.mobile ,ua.token, ua.ctime
                         FROM users AS u 
                         LEFT JOIN users_auth AS ua 
                         ON u.id = ua.user_id 
@@ -40,7 +40,7 @@ const updateReceiverAddressSql = `UPDATE receiver_address
 module.exports = {
   registerAction(req, res) {
 
-    let attrs = ['username', 'password', 'vCode', 'mobile']
+    let attrs = ['username', 'nickname', 'password', 'vCode', 'mobile']
     
     if (!req.checkFormBody(attrs, res)) return
 
@@ -135,6 +135,7 @@ module.exports = {
         if (!result || result.length === 0) throw new Error('用户名不存在!')
         const hash = result[0].password
         userInfo.id = result[0].id
+        userInfo.nickname = result[0].nickname
         userInfo.mobile = result[0].mobile
         if (bcrypt.compareSync(req.body.password, hash)) {
           userInfo.token = result[0].token
