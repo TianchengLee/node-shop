@@ -66,7 +66,6 @@ app.use(expressJwt({
 }).unless({
   //除了这些地址, 其他的URL都需要验证, 支持正则
   path: [
-    // '/apidoc',
     /\/apidoc\/*\w*/,
     '/v1/users/login',
     '/v1/users/register',

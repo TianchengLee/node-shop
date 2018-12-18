@@ -11,12 +11,12 @@ const getNewsSql = `SELECT id, title, icon, description, views
 const getNewsByKeysSql = `SELECT id, title, icon, description, views 
                           FROM news
                           WHERE del_state = 0
-                          AND CONCAT(title, description) LIKE ?
+                          AND CONCAT(title, description, content) LIKE ?
                           LIMIT ?, ?;
                           SELECT COUNT(*) as count 
                           FROM news
                           WHERE del_state = 0
-                          AND CONCAT(title, description) LIKE ?`
+                          AND CONCAT(title, description, content) LIKE ?`
 
 const getNewsByCategoriesSql = `SELECT id, title, icon, description, views 
                           FROM news
@@ -27,6 +27,12 @@ const getNewsByCategoriesSql = `SELECT id, title, icon, description, views
                           FROM news
                           WHERE del_state = 0
                           AND cate_id = ?`
+
+const getNewsInfoByIdSql = `SELECT id, title, icon, description, content views
+                            FROM news
+                            WHERE del_state = 0
+                            AND id = ?
+                            LIMIT 0, 1`
 
 const getNewsCategoriesSql = `SELECT * FROM news_cate`
 function checkNewsSql(req) {
@@ -45,7 +51,7 @@ function checkNewsSql(req) {
 }
 
 module.exports = {
-  getNewsAction(req, res) {
+  getNewsListAction(req, res) {
 
     const attrs = ['page', 'pageSize']
     if (!req.checkFormBody(attrs, res)) return
@@ -65,6 +71,17 @@ module.exports = {
     sqlExcute(getNewsCategoriesSql)
       .then(result => {
         res.sendSucc('获取新闻分类列表成功!', result)
+      })
+      .catch(e => {
+        res.sendErr(400, e.message)
+      })
+    },
+    getNewsInfoAction(req, res) {
+      const newsId = parseInt(req.params.id)
+      if (!newsId) return res.sendErr(400, '请传入正确的新闻Id!')
+      sqlExcute(getNewsInfoByIdSql, newsId)
+      .then(result => {
+        res.sendSucc('获取新闻详情成功!', result[0])
       })
       .catch(e => {
         res.sendErr(400, e.message)
