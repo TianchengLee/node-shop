@@ -40,7 +40,13 @@ const getCommentListSql = `SELECT id, comment, news_id
                           FROM news_comment 
                           WHERE del_state = 0
                           AND news_id = ?
-                          LIMIT ?, ?`
+                          LIMIT ?, ?;
+                          SELECT COUNT(*) as count 
+                          FROM news_comment
+                          WHERE del_state = 0
+                          AND news_id = ?`
+
+const postCommentSql = `INSERT INTO news_comment SET ?`
 function checkNewsSql(req) {
 
   const pageSize = parseInt(req.query.pageSize)
@@ -97,9 +103,28 @@ module.exports = {
     req.checkFormBody(['id', 'page', 'pageSize'], res)
 
     const pageSize = parseInt(req.query.pageSize)
-    sqlExcute(getCommentListSql, [req.params.id, (req.query.page - 1) * pageSize, pageSize])
+    sqlExcute(getCommentListSql, [req.params.id, (req.query.page - 1) * pageSize, pageSize, req.params.id])
       .then(result => {
-        res.sendSucc('获取评论列表成功!', result)
+        res.sendSucc('获取评论列表成功!', { comments: result[0], totalCount: result[1][0].count })
+      })
+      .catch(e => {
+        res.sendErr(400, e.message)
+      })
+  },
+  postCommentAction(req, res) {
+    req.checkFormBody(['id', 'comment'], res)
+
+    const news_id = req.params.id
+
+    const comment = req.body.comment
+
+    sqlExcute(getNewsInfoByIdSql, news_id)
+      .then(result => {
+        if (result.length > 0) return sqlExcute(postCommentSql, { news_id, comment })
+      })
+      .then(result => {
+        if (!result) throw new Error('新闻信息不存在!请传入正确的新闻id!')
+        res.sendSucc('发表评论成功!')
       })
       .catch(e => {
         res.sendErr(400, e.message)
