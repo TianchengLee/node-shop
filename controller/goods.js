@@ -7,7 +7,9 @@ const getGoodsSubCategoriesSql = `SELECT id, name, icon
                                   LIMIT ?, ?;
                                   SELECT COUNT(*) AS count
                                   FROM goods_sub_cate`
-
+const getGoodsSubCategoriesByIdSql = `SELECT id, name, icon 
+                                      FROM goods_sub_cate
+                                      WHERE p_cate_id = ?`
 module.exports = {
   getGoodsCategoriesAction(req, res) {
     sqlExcute(getGoodsCategoriesSql)
@@ -21,6 +23,13 @@ module.exports = {
     sqlExcute(getGoodsSubCategoriesSql, [(req.query.page - 1) * pageSize, pageSize])
       .then(result => {
         res.sendSucc('获取商品所有二级分类数据成功!', { cates: result[0], totalCount: result[1][0].count })
+      })
+  },
+  getGoodsSubCategoriesByIdAction(req, res) {
+    const cateId = parseInt(req.params.id)
+    sqlExcute(getGoodsSubCategoriesByIdSql, cateId)
+      .then(result => {
+        res.sendSucc('获取商品分类数据成功!', result)
       })
   }
 }
