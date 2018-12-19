@@ -18,7 +18,7 @@ const getGoodsListSql = `SELECT g.id, g.name, g.description, g.content, g.price,
                         ON g.id = gs.gid
                         LEFT JOIN goods_pic gp
                         ON g.id = gp.gid
-                        GROUP BY g.name
+                        GROUP BY g.id
                         LIMIT ?, ?`
 module.exports = {
   getGoodsCategoriesAction(req, res) {
