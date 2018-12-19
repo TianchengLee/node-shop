@@ -41,7 +41,7 @@ module.exports = {
   registerAction(req, res) {
 
     let attrs = ['username', 'nickname', 'password', 'vCode', 'mobile']
-    
+
     if (!req.checkFormBody(attrs, res)) return
 
     if (!req.session.vCode || req.session.vCode.toLowerCase() != req.body.vCode.toLowerCase()) return res.sendErr(400, '验证码错误!')
@@ -139,8 +139,7 @@ module.exports = {
           userInfo.nickname = result[0].nickname
           userInfo.mobile = result[0].mobile
           userInfo.token = result[0].token
-          console.log(result[0].ctime)
-          if (!userInfo.token || Date.now() - new Date(result[0].ctime) >= config.tokenExpire) {
+          if (!userInfo.token || (Date.now() - new Date(result[0].ctime)) / 1000 >= config.tokenExpire) {
             userInfo.token = jwt.sign({ secret }, secret, {
               expiresIn: config.tokenExpire
             })

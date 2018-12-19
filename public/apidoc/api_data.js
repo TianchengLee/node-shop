@@ -1248,7 +1248,7 @@ define({ "api": [
     "title": "获取商品一级分类列表信息",
     "description": "<p>获取商品一级分类列表信息</p>",
     "name": "getGoodsCategories",
-    "group": "5_Goods_Info",
+    "group": "5_Goods_Category",
     "success": {
       "fields": {
         "Success 200": [
@@ -1290,7 +1290,7 @@ define({ "api": [
     ],
     "version": "1.0.0",
     "filename": "routes/v1/goods.js",
-    "groupTitle": "5_Goods_Info"
+    "groupTitle": "5_Goods_Category"
   },
   {
     "type": "get",
@@ -1298,7 +1298,7 @@ define({ "api": [
     "title": "获取商品所有二级分类列表信息",
     "description": "<p>获取商品所有二级分类列表信息</p>",
     "name": "getGoodsSubCategories",
-    "group": "5_Goods_Info",
+    "group": "5_Goods_Category",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -1360,7 +1360,7 @@ define({ "api": [
     ],
     "version": "1.0.0",
     "filename": "routes/v1/goods.js",
-    "groupTitle": "5_Goods_Info"
+    "groupTitle": "5_Goods_Category"
   },
   {
     "type": "get",
@@ -1368,7 +1368,7 @@ define({ "api": [
     "title": "获取指定的二级分类列表信息",
     "description": "<p>获取指定的二级分类列表信息</p>",
     "name": "getGoodsSubCategoriesById",
-    "group": "5_Goods_Info",
+    "group": "5_Goods_Category",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -1397,7 +1397,7 @@ define({ "api": [
             "type": "json",
             "optional": false,
             "field": "data",
-            "description": "<p>分类数据</p>"
+            "description": "<p>分类列表数据</p>"
           },
           {
             "group": "Success 200",
@@ -1411,7 +1411,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n    \"status\": 200,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"周大福\",\n            \"icon\": \"\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"周生生\",\n            \"icon\": \"\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"GUCCI\",\n            \"icon\": \"\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"FENDI\",\n            \"icon\": \"\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"BOSS\",\n            \"icon\": \"\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"OMEGA\",\n            \"icon\": \"\"\n        },\n        {\n            \"id\": 7,\n            \"name\": \"TISSOT\",\n            \"icon\": \"\"\n        }\n    ],\n    \"succMsg\": \"获取商品分类数据成功!\",\n    \"errMsg\": null\n   }",
+          "content": "{\n    \"status\": 200,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"周大福\",\n            \"icon\": \"\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"周生生\",\n            \"icon\": \"\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"GUCCI\",\n            \"icon\": \"\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"FENDI\",\n            \"icon\": \"\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"BOSS\",\n            \"icon\": \"\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"OMEGA\",\n            \"icon\": \"\"\n        },\n        {\n            \"id\": 7,\n            \"name\": \"TISSOT\",\n            \"icon\": \"\"\n        }\n    ],\n    \"succMsg\": \"获取商品分类列表数据成功!\",\n    \"errMsg\": null\n   }",
           "type": "json"
         }
       ]
@@ -1423,6 +1423,76 @@ define({ "api": [
     ],
     "version": "1.0.0",
     "filename": "routes/v1/goods.js",
-    "groupTitle": "5_Goods_Info"
+    "groupTitle": "5_Goods_Category"
+  },
+  {
+    "type": "get",
+    "url": "/v1/goods/getGoodsList",
+    "title": "获取商品列表信息",
+    "description": "<p>获取商品列表信息</p>",
+    "name": "getGoodsList",
+    "group": "6_Goods_Info",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "number",
+            "optional": false,
+            "field": "page",
+            "description": "<p>页码数</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "number",
+            "optional": false,
+            "field": "pageSize",
+            "description": "<p>每页条数</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>状态码</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "json",
+            "optional": false,
+            "field": "data",
+            "description": "<p>商品列表数据</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "succMsg",
+            "description": "<p>成功消息</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n    \"status\": 200,\n    \"data\": [\n      {\n        \"id\": 1,\n        \"name\": \"婴儿纱布夹棉侧开睡袋90x58cm， 1条装\",\n        \"description\": \"双层纱布面料，中间100%棉填充，亲肤保暖；袖子可拆卸，伸展更自由。\",\n        \"content\": \"<div class=\\\"content\\\">\\r\\n\\t\\t\\t\\t<div class=\\\"script-append\\\">\\r\\n\\t\\t\\t\\t\\t<script src=\\\"https://res.purcotton.com//mres/res/mall/js/commodity/commodity_790.js\\\"></script><div><img class=\\\"goods-notice\\\" style=\\\"vertical-align:middle;\\\" src=\\\"https://res.purcotton.com/base/images/goods-notice-pc.jpg?v=201802110943\\\"></div>\\r\\n\\t\\t\\t\\t</div>\\r\\n\\t\\t\\t\\t<!-- mc上传商品的具体信息 -->\\r\\n\\t\\t\\t\\t<div class=\\\"upload\\\">\\r\\n\\t\\t\\t\\t\\t<p>\\r\\n\\t<img alt=\\\"\\\" src=\\\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/E63CD5AC361A9B15CDC6B5DE382E5DD9.jpg\\\"><img alt=\\\"\\\" src=\\\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/645834B99E2C16BBF6642E9BFA86B3DE.jpg\\\"><img alt=\\\"\\\" src=\\\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/AC0024704E484B28C897B6A0CFE83199.jpg\\\"><img alt=\\\"\\\" src=\\\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/2F6C7281DB84924802D07A0BBDE9D55A.jpg\\\"><img alt=\\\"\\\" src=\\\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/37BD2AEADB8B6F842BD6263C3F089789.jpg\\\"><img alt=\\\"\\\" src=\\\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/056DC542CE9505A62880BEDE009CDDA7.jpg\\\"><img alt=\\\"\\\" src=\\\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/8E311DBC3E38A89FAD273EE83244F928.jpg\\\"><img alt=\\\"\\\" src=\\\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/16AD3FB6F8978B6DFAFEB75E9D131436.jpg\\\"><img alt=\\\"\\\" src=\\\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/27586CF62EBBF9AB6191F1C96D8C7892.jpg\\\"><img alt=\\\"\\\" src=\\\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/2CFA25A9266FF17B2F0FB2159A168931.jpg\\\"></p>\\r\\n\\r\\n\\t\\t\\t\\t</div><!-- upload end -->\\r\\n\\t\\t\\t</div>\",\n        \"price\": \"398\",\n        \"sale_price\": \"398\",\n        \"kucun\": 1230,\n        \"sale_count\": 2360,\n        \"ctime\": \"2018-12-19 18:30:00\",\n        \"color\": [\n            \"星际呦呦\",\n            \"森林乐章\",\n            \"绿底白树\"\n        ],\n        \"size\": null,\n        \"small_pic\": null,\n        \"big_pic\": null\n      },\n      {\n        \"id\": 2,\n        \"name\": \"幼儿纱布床品7件套件（带被芯）幼儿床适用， 1套装\",\n        \"description\": \"透气-优质纱布面料， 舒适透气， 让宝宝享受高质量睡眠。\",\n        \"content\": \"<div class=\\\"content\\\" style=\\\"display: block;\\\">\\r\\n\\t\\t\\t\\t<div class=\\\"script-append\\\">\\r\\n\\t\\t\\t\\t\\t<script src=\\\"https://res.purcotton.com//mres/res/mall/js/commodity/commodity_790.js\\\"></script><div><img class=\\\"goods-notice\\\" style=\\\"vertical-align:middle;\\\" src=\\\"https://res.purcotton.com/base/images/goods-notice-pc.jpg?v=201802110943\\\"></div>\\r\\n\\t\\t\\t\\t</div>\\r\\n\\t\\t\\t\\t<!-- mc上传商品的具体信息 -->\\r\\n\\t\\t\\t\\t<div class=\\\"upload\\\">\\r\\n\\t\\t\\t\\t\\t<p>\\r\\n\\t<img alt=\\\"\\\" src=\\\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/494BCB2D7077F847320FDCDDA83F96AD.jpg\\\"><img alt=\\\"\\\" src=\\\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/B8B20B219C0120ABFB1A7D097D8F7336.jpg\\\"><img alt=\\\"\\\" src=\\\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/4EB13DA1DE86B5BB053C5B372BBD80D3.jpg\\\"><img alt=\\\"\\\" src=\\\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/30094A97DE82EDB7D885CA4BA2B8F6C8.jpg\\\"><img alt=\\\"\\\" src=\\\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/F3DC3BCCE1EBC2A9AF00576C3E6CD683.jpg\\\"><img alt=\\\"\\\" src=\\\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/087DCB75B776EB246466D00F946BBFD9.jpg\\\"><img alt=\\\"\\\" src=\\\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/634235846DE3B7A35C9255B255AE498E.jpg\\\"><img alt=\\\"\\\" src=\\\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/8FFD5CE20AC1996530C6E3587DAFDEC4.jpg\\\"><img alt=\\\"\\\" src=\\\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/48BFB34DBC2CC0437C11BCA4C836FF3C.jpg\\\"></p>\\r\\n\\r\\n\\t\\t\\t\\t</div><!-- upload end -->\\r\\n\\t\\t\\t</div>\",\n        \"price\": \"1568\",\n        \"sale_price\": \"1019.2\",\n        \"kucun\": 1020,\n        \"sale_count\": 2323,\n        \"ctime\": \"2018-12-18 18:30:00\",\n        \"color\": null,\n        \"size\": [\n            \"幼儿床适用\"\n        ],\n        \"small_pic\": [\n            \"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/10000001_00000695/62C44938FF4B0D57DB31EFEC869AF7C5.jpg_100x100.jpg\",\n            \"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/10000001_00000695/D1F57051FAB232B135C203D9F0ADCD47.jpg_100x100.jpg\"\n        ],\n        \"big_pic\": [\n            \"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/10000001_00000695/E3855E8AE1DCAF5ED11250CCAA0C7DF1.jpg_750x600.jpg\",\n            \"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/10000001_00000695/D1F57051FAB232B135C203D9F0ADCD47.jpg_750x600.jpg\"\n        ]\n      }\n    ],\n    \"succMsg\": \"获取商品列表成功!\",\n    \"errMsg\": null\n  }",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "/v1/goods/getGoodsList"
+      }
+    ],
+    "version": "1.0.0",
+    "filename": "routes/v1/goods.js",
+    "groupTitle": "6_Goods_Info"
   }
 ] });
