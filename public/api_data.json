@@ -1610,6 +1610,89 @@
           },
           {
             "group": "Success 200",
+            "type": "null",
+            "optional": false,
+            "field": "data",
+            "description": "<p>null</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "succMsg",
+            "description": "<p>成功消息</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n    \"status\": 200,\n    \"data\": null,\n    \"succMsg\": \"删除购物车商品成功!\",\n    \"errMsg\": null\n  }",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "/v1/cart/deleteGoodsFromCart/:id"
+      }
+    ],
+    "version": "1.0.0",
+    "filename": "routes/v1/cart.js",
+    "groupTitle": "7_Shopping_Cart"
+  },
+  {
+    "type": "get",
+    "url": "/v1/cart/getGoodsFromCart",
+    "title": "获取当前用户的购物车信息(需要token)",
+    "description": "<p>获取当前用户的购物车信息</p>",
+    "name": "getGoodsFromCart",
+    "group": "7_Shopping_Cart",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "number",
+            "optional": false,
+            "field": "page",
+            "description": "<p>页码数</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "number",
+            "optional": false,
+            "field": "pageSize",
+            "description": "<p>每页条数</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>状态码</p>"
+          },
+          {
+            "group": "Success 200",
             "type": "json",
             "optional": false,
             "field": "data",
@@ -1634,7 +1717,7 @@
     },
     "sampleRequest": [
       {
-        "url": "/v1/cart/deleteGoodsFromCart/:id"
+        "url": "/v1/cart/getGoodsFromCart"
       }
     ],
     "version": "1.0.0",
@@ -1693,10 +1776,10 @@
           },
           {
             "group": "Success 200",
-            "type": "json",
+            "type": "null",
             "optional": false,
             "field": "data",
-            "description": "<p>商品列表数据</p>"
+            "description": "<p>null</p>"
           },
           {
             "group": "Success 200",
