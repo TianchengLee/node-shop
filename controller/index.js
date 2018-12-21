@@ -1,9 +1,6 @@
-const users = require('./users')
-const news = require('./news')
-const goods = require('./goods')
-
 module.exports = {
-  users,
-  news,
-  goods
+  users: require('./users'),
+  news: require('./news'),
+  goods: require('./goods'),
+  cart: require('./cart')
 }
