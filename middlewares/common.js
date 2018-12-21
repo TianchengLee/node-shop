@@ -30,7 +30,7 @@ function checkFormBody(attrs = [], res) {
       }
     }
   })
-  !pass && res && res.send(400, keywords.join(',') + '未填写!')
+  !pass && res && res.sendErr(400, keywords.join(',') + '未填写!')
   return pass
 }
 

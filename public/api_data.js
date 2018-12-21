@@ -1566,6 +1566,82 @@ define({ "api": [
     "groupTitle": "6_Goods_Info"
   },
   {
+    "type": "get",
+    "url": "/v1/cart/deleteGoodsFromCart/:id",
+    "title": "删除购物车中的商品(需要token)",
+    "description": "<p>删除购物车中的商品</p>",
+    "name": "deleteGoodsFromCart",
+    "group": "7_Shopping_Cart",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>指定要删除的商品id</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>状态码</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "json",
+            "optional": false,
+            "field": "data",
+            "description": "<p>商品列表数据</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "succMsg",
+            "description": "<p>成功消息</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n    \"status\": 200,\n    \"data\": null,\n    \"succMsg\": \"删除购物车商品成功!\",\n    \"errMsg\": null\n  }",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "/v1/cart/deleteGoodsFromCart/:id"
+      }
+    ],
+    "version": "1.0.0",
+    "filename": "routes/v1/cart.js",
+    "groupTitle": "7_Shopping_Cart"
+  },
+  {
     "type": "post",
     "url": "/v1/cart/postGoodsToCart/:id",
     "title": "添加商品到购物车(需要token)",
