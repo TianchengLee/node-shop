@@ -1,4 +1,4 @@
-# [ Node Shop](https://github.com/itcast-wh/node-shop)
+# [Node Shop](https://github.com/itcast-wh/node-shop)
 
 ## 技术栈
 
@@ -19,8 +19,8 @@
 
 ## 线上接口文档地址(域名: litc.pro 暂未备案结束)
 
-    http://39.98.161.107:9999
-
+[http://39.98.161.107:9999](http://39.98.161.107:9999p)
+    
 ## 模块划分
 
 1. 用户模块
