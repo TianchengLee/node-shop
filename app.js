@@ -2,9 +2,9 @@ const createError = require('http-errors')
 const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
-const logger = require('morgan')
-const fs = require('fs')
-const FileStreamRotator = require('file-stream-rotator');
+// const logger = require('morgan')
+// const fs = require('fs')
+// const FileStreamRotator = require('file-stream-rotator');
 const session = require('express-session')
 const cors = require('cors')
 const expressJwt = require('express-jwt')
@@ -19,22 +19,22 @@ const app = express()
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
-const logDirectory = __dirname + '/logs'
-fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory)
+// const logDirectory = __dirname + '/logs'
+// fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory)
 
-const accessLogStream = FileStreamRotator.getStream({
-  filename: logDirectory + '/accss-%DATE%.log',
-  frequency: 'daily',
-  verbose: false
-})
+// const accessLogStream = FileStreamRotator.getStream({
+//   filename: logDirectory + '/accss-%DATE%.log',
+//   frequency: 'daily',
+//   verbose: false
+// })
 
 // 响应错误和响应成功的方法封装
 app.use(commonMiddleware.sendSucc)
 app.use(commonMiddleware.sendErr)
 app.use(commonMiddleware.checkFormBody)
 app.use(cors())
-app.use(logger('dev'))
-app.use(logger('combined', { stream: accessLogStream }))
+// app.use(logger('dev'))
+// app.use(logger('combined', { stream: accessLogStream }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
