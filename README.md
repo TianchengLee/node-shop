@@ -7,7 +7,6 @@
 ## 下载源码
     git clone https://github.com/itcast-wh/node-shop.git
 
-
 ## 开始使用
 
 #### 安装依赖
@@ -18,8 +17,9 @@
 
     npm start
 
-## 注意事项 ##
+## 线上接口文档地址(域名: litc.pro 暂未备案结束)
 
+    http://39.98.161.107:9999
 
 ## 模块划分
 
