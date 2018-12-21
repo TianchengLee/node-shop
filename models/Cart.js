@@ -23,7 +23,7 @@ Cart.addGoods = function (goodsInfo, callback) {
     .spread((result, created) => {
       if (created) return callback(created)
       let cartInfo = result.dataValues
-      cartInfo.count += count
+      cartInfo.count = count
       return Cart.update(cartInfo, {
         where: {
           id: cartInfo.id
