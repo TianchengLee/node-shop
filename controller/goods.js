@@ -2,13 +2,15 @@ const sqlExcute = require('../db')
 const moment = require('moment')
 
 const getGoodsCategoriesSql = `SELECT * FROM goods_cate`
-const getGoodsSubCategoriesSql = `SELECT id, name, icon 
-                                  FROM goods_sub_cate
+const getGoodsSubCategoriesSql = `SELECT id, name
+                                  FROM goods_cate
+                                  WHERE p_cate_id IS NOT NULL
                                   LIMIT ?, ?;
                                   SELECT COUNT(*) AS count
-                                  FROM goods_sub_cate`
-const getGoodsSubCategoriesByIdSql = `SELECT id, name, icon 
-                                      FROM goods_sub_cate
+                                  FROM goods_cate
+                                  WHERE p_cate_id IS NOT NULL`
+const getGoodsSubCategoriesByIdSql = `SELECT id, name 
+                                      FROM goods_cate
                                       WHERE p_cate_id = ?`
 const getGoodsListSql = `SELECT g.id, g.name, g.description, g.content, g.price, g.sale_price, g.kucun, g.sale_count, g.ctime, GROUP_CONCAT(distinct gc.color) AS color, GROUP_CONCAT(distinct gs.size) AS size, GROUP_CONCAT(distinct gp.small_pic) AS small_pic, GROUP_CONCAT(distinct gp.big_pic) AS big_pic
                         FROM goods g
