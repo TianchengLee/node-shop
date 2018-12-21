@@ -7,29 +7,9 @@ module.exports = {
     const user_id = parseInt(req.userInfo.id)
     const count = parseInt(req.body.count)
 
-    Cart.findOrCreate({
-      where: {
-        goods_id,
-        user_id
-      },
-      defaults: {
-        goods_id,
-        user_id,
-        count
-      }
+    Cart.addGoods({ goods_id, user_id, count }, (result, err) => {
+      if (result) return res.sendSucc('添加购物车成功!')
+      else res.sendErr(500, '添加购物车失败!' + err.message)
     })
-      .spread((result, created) => {
-        if (created) return res.sendSucc('添加购物车成功!')
-        let cartInfo = result.dataValues
-        cartInfo.count += count
-        return Cart.update(cartInfo, {
-          where: {
-            id: cartInfo.id
-          }
-        })
-      })
-      .then(result => {
-        res.sendSucc('添加购物车成功!')
-      })
   }
 }
