@@ -16,23 +16,26 @@ USE `shop`;
 CREATE TABLE `goods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '',
+  `cover_img` varchar(255) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT '',
+  `discount_info` varchar(255) NOT NULL DEFAULT '',
   `content` text NOT NULL,
   `price` varchar(255) NOT NULL DEFAULT '',
   `sale_price` varchar(255) NOT NULL DEFAULT '',
-  `kucun` int(11) NOT NULL DEFAULT '0',
+  `stock` int(11) NOT NULL DEFAULT '0',
   `sale_count` int(11) NOT NULL DEFAULT '0',
   `ctime` varchar(255) NOT NULL DEFAULT '',
   `cate_id` varchar(255) NOT NULL DEFAULT '',
+  `sub_cate_id` int(11) NOT NULL DEFAULT '0',
   `del_state` tinyint(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 #
 # Data for table "goods"
 #
 
-INSERT INTO `goods` VALUES (1,'婴儿纱布夹棉侧开睡袋90x58cm， 1条装','双层纱布面料，中间100%棉填充，亲肤保暖；袖子可拆卸，伸展更自由。','<div class=\"content\">\r\n\t\t\t\t<div class=\"script-append\">\r\n\t\t\t\t\t<script src=\"https://res.purcotton.com//mres/res/mall/js/commodity/commodity_790.js\"></script><div><img class=\"goods-notice\" style=\"vertical-align:middle;\" src=\"https://res.purcotton.com/base/images/goods-notice-pc.jpg?v=201802110943\"></div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<!-- mc上传商品的具体信息 -->\r\n\t\t\t\t<div class=\"upload\">\r\n\t\t\t\t\t<p>\r\n\t<img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/E63CD5AC361A9B15CDC6B5DE382E5DD9.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/645834B99E2C16BBF6642E9BFA86B3DE.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/AC0024704E484B28C897B6A0CFE83199.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/2F6C7281DB84924802D07A0BBDE9D55A.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/37BD2AEADB8B6F842BD6263C3F089789.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/056DC542CE9505A62880BEDE009CDDA7.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/8E311DBC3E38A89FAD273EE83244F928.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/16AD3FB6F8978B6DFAFEB75E9D131436.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/27586CF62EBBF9AB6191F1C96D8C7892.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/2CFA25A9266FF17B2F0FB2159A168931.jpg\"></p>\r\n\r\n\t\t\t\t</div><!-- upload end -->\r\n\t\t\t</div>','398','398',1230,2360,'2018-12-19 18:30:00','0',0),(2,'幼儿纱布床品7件套件（带被芯）幼儿床适用， 1套装','透气-优质纱布面料， 舒适透气， 让宝宝享受高质量睡眠。','<div class=\"content\" style=\"display: block;\">\r\n\t\t\t\t<div class=\"script-append\">\r\n\t\t\t\t\t<script src=\"https://res.purcotton.com//mres/res/mall/js/commodity/commodity_790.js\"></script><div><img class=\"goods-notice\" style=\"vertical-align:middle;\" src=\"https://res.purcotton.com/base/images/goods-notice-pc.jpg?v=201802110943\"></div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<!-- mc上传商品的具体信息 -->\r\n\t\t\t\t<div class=\"upload\">\r\n\t\t\t\t\t<p>\r\n\t<img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/494BCB2D7077F847320FDCDDA83F96AD.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/B8B20B219C0120ABFB1A7D097D8F7336.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/4EB13DA1DE86B5BB053C5B372BBD80D3.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/30094A97DE82EDB7D885CA4BA2B8F6C8.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/F3DC3BCCE1EBC2A9AF00576C3E6CD683.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/087DCB75B776EB246466D00F946BBFD9.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/634235846DE3B7A35C9255B255AE498E.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/8FFD5CE20AC1996530C6E3587DAFDEC4.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/48BFB34DBC2CC0437C11BCA4C836FF3C.jpg\"></p>\r\n\r\n\t\t\t\t</div><!-- upload end -->\r\n\t\t\t</div>','1568','1019.2',1020,2323,'2018-12-18 18:30:00','0',0);
+INSERT INTO `goods` VALUES (1,'婴儿纱布夹棉侧开睡袋90x58cm， 1条装','https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/10000001_00000695/06FF87611C685BC71FA2C921058564CC.jpg_350x350.jpg','双层纱布面料，中间100%棉填充，亲肤保暖；袖子可拆卸，伸展更自由。','【限时活动】圣诞欢乐颂到手价5折起【满赠】圣诞节全场单笔满338送卫生巾2包，满468送汗巾3条，满658送书籍1本（单笔订单限赠1份）','<div class=\"content\">\r\n\t\t\t\t<div class=\"script-append\">\r\n\t\t\t\t\t<script src=\"https://res.purcotton.com//mres/res/mall/js/commodity/commodity_790.js\"></script><div><img class=\"goods-notice\" style=\"vertical-align:middle;\" src=\"https://res.purcotton.com/base/images/goods-notice-pc.jpg?v=201802110943\"></div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<!-- mc上传商品的具体信息 -->\r\n\t\t\t\t<div class=\"upload\">\r\n\t\t\t\t\t<p>\r\n\t<img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/E63CD5AC361A9B15CDC6B5DE382E5DD9.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/645834B99E2C16BBF6642E9BFA86B3DE.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/AC0024704E484B28C897B6A0CFE83199.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/2F6C7281DB84924802D07A0BBDE9D55A.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/37BD2AEADB8B6F842BD6263C3F089789.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/056DC542CE9505A62880BEDE009CDDA7.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/8E311DBC3E38A89FAD273EE83244F928.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/16AD3FB6F8978B6DFAFEB75E9D131436.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/27586CF62EBBF9AB6191F1C96D8C7892.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002010009/80000000/002000001384/ckeditor/2CFA25A9266FF17B2F0FB2159A168931.jpg\"></p>\r\n\r\n\t\t\t\t</div><!-- upload end -->\r\n\t\t\t</div>','398','398',1230,2360,'2018-12-19 18:30:00','1',7,0),(2,'幼儿纱布床品7件套件（带被芯）幼儿床适用， 1套装','https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/10000001_00000695/62C44938FF4B0D57DB31EFEC869AF7C5.jpg_350x350.jpg','透气-优质纱布面料， 舒适透气， 让宝宝享受高质量睡眠。','【限时活动】圣诞欢乐颂到手价5折起【满赠】圣诞节全场单笔满338送卫生巾2包，满468送汗巾3条，满658送书籍1本（单笔订单限赠1份）','<div class=\"content\" style=\"display: block;\">\r\n\t\t\t\t<div class=\"script-append\">\r\n\t\t\t\t\t<script src=\"https://res.purcotton.com//mres/res/mall/js/commodity/commodity_790.js\"></script><div><img class=\"goods-notice\" style=\"vertical-align:middle;\" src=\"https://res.purcotton.com/base/images/goods-notice-pc.jpg?v=201802110943\"></div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<!-- mc上传商品的具体信息 -->\r\n\t\t\t\t<div class=\"upload\">\r\n\t\t\t\t\t<p>\r\n\t<img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/494BCB2D7077F847320FDCDDA83F96AD.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/B8B20B219C0120ABFB1A7D097D8F7336.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/4EB13DA1DE86B5BB053C5B372BBD80D3.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/30094A97DE82EDB7D885CA4BA2B8F6C8.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/F3DC3BCCE1EBC2A9AF00576C3E6CD683.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/087DCB75B776EB246466D00F946BBFD9.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/634235846DE3B7A35C9255B255AE498E.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/8FFD5CE20AC1996530C6E3587DAFDEC4.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/ckeditor/48BFB34DBC2CC0437C11BCA4C836FF3C.jpg\"></p>\r\n\r\n\t\t\t\t</div><!-- upload end -->\r\n\t\t\t</div>','1568','1019.2',1020,2323,'2018-12-18 18:30:00','1',7,0),(4,'盒装水洗纱布面巾25x50-5P,3片/盒(水洗后成型尺寸)','https://res.purcotton.com//images/commodity/002004001/80000000/002000000276/10000001_00000607/3C9E19B7D6BA02964C19E6476E79FFD9.jpg_350x350.jpg','纯棉5层纱布吸水迅速 易洗易干','【满折】棉苗会员正价商品92折，棉桃会员88折，棉花会员85折【满赠】圣诞节全场单笔满338送卫生巾2包，满468送汗巾3条，满658送书籍1本（单笔订单限赠1份）','<div class=\"content\">\r\n\t\t\t\t<div class=\"script-append\">\r\n\t\t\t\t\t<script src=\"https://res.purcotton.com//mres/res/mall/js/commodity/commodity_790.js\"></script><div><img class=\"goods-notice\" style=\"vertical-align:middle;\" src=\"https://res.purcotton.com/base/images/goods-notice-pc.jpg?v=201802110943\"></div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<!-- mc上传商品的具体信息 -->\r\n\t\t\t\t<div class=\"upload\">\r\n\t\t\t\t\t<p>\r\n\t<img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002004001/80000000/002000000276/ckeditor/5D6DFDB950F32D945E7AFB882ADC7BCE.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002004001/80000000/002000000276/ckeditor/75B228E82946264F3FB200E4E094AE53.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002004001/80000000/002000000276/ckeditor/B8C7E1B36E9C5B1BC28253FEF24B9A5B.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002004001/80000000/002000000276/ckeditor/4FDFC6544B6D075D14613DE357C716FE.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002004001/80000000/002000000276/ckeditor/AEF108863B9854C5CD5505E224E7943B.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002004001/80000000/002000000276/ckeditor/21BE0B9EE77AB482C7CDE00D8BEBC6B3.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002004001/80000000/002000000276/ckeditor/F8EF07C239DBB2793C44B68FC7FE23BE.jpg\"><img alt=\"\" src=\"https://res.purcotton.com//images/commodity/002004001/80000000/002000000276/ckeditor/E666DCA2DF62A89C8121B6D83CC73170.jpg\"></p>\r\n\r\n\t\t\t\t</div><!-- upload end -->\r\n\t\t\t</div>','98','98',0,4998,'2018-12-20 18:30:00','1',6,0);
 
 #
 # Structure for table "goods_cate"
@@ -40,15 +43,16 @@ INSERT INTO `goods` VALUES (1,'婴儿纱布夹棉侧开睡袋90x58cm， 1条装'
 
 CREATE TABLE `goods_cate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) DEFAULT NULL,
+  `name` varchar(20) NOT NULL DEFAULT '',
+  `p_cate_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=99 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 #
 # Data for table "goods_cate"
 #
 
-INSERT INTO `goods_cate` VALUES (1,'时尚'),(2,'男装'),(3,'女装'),(4,'男鞋'),(5,'女鞋'),(6,'箱包手袋'),(7,'手机数码'),(8,'电脑办公'),(9,'家用电器'),(10,'生鲜食品');
+INSERT INTO `goods_cate` VALUES (1,'婴童',NULL),(2,'女士',NULL),(3,'家居',NULL),(4,'男士',NULL),(5,'婴童护理',1),(6,'婴童卫浴',1),(7,'婴童床品',1),(8,'婴童服装(0-1岁)',1),(9,'婴童服装(1-4岁)',1),(10,'婴童服装(4岁以上) ',1),(11,'婴童服饰',1),(12,'女士服装服饰',2),(13,'美容用品',2),(14,'女士卫生用品',2),(15,'孕产用品',2),(16,'厨房用品',3),(17,'床上用品',3),(18,'护理用品',3),(19,'旅游户外',3),(20,'收纳用品',3),(21,'卫浴用品',3),(22,'其它',3),(23,'男士服装服饰',4),(24,'男士卫生用品',4);
 
 #
 # Structure for table "goods_color"
@@ -68,22 +72,22 @@ CREATE TABLE `goods_color` (
 INSERT INTO `goods_color` VALUES (1,'星际呦呦',1),(2,'森林乐章',1),(3,'绿底白树',1);
 
 #
-# Structure for table "goods_pic"
+# Structure for table "goods_img"
 #
 
-CREATE TABLE `goods_pic` (
+CREATE TABLE `goods_img` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `small_pic` varchar(255) NOT NULL DEFAULT '',
-  `big_pic` varchar(255) NOT NULL DEFAULT '',
+  `small_img` varchar(255) NOT NULL DEFAULT '',
+  `big_img` varchar(255) NOT NULL DEFAULT '',
   `gid` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 #
-# Data for table "goods_pic"
+# Data for table "goods_img"
 #
 
-INSERT INTO `goods_pic` VALUES (1,'https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/10000001_00000695/62C44938FF4B0D57DB31EFEC869AF7C5.jpg_100x100.jpg','https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/10000001_00000695/E3855E8AE1DCAF5ED11250CCAA0C7DF1.jpg_750x600.jpg','2'),(2,'https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/10000001_00000695/D1F57051FAB232B135C203D9F0ADCD47.jpg_100x100.jpg','https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/10000001_00000695/D1F57051FAB232B135C203D9F0ADCD47.jpg_750x600.jpg','2');
+INSERT INTO `goods_img` VALUES (1,'https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/10000001_00000695/62C44938FF4B0D57DB31EFEC869AF7C5.jpg_100x100.jpg','https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/10000001_00000695/E3855E8AE1DCAF5ED11250CCAA0C7DF1.jpg_750x600.jpg','2'),(2,'https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/10000001_00000695/D1F57051FAB232B135C203D9F0ADCD47.jpg_100x100.jpg','https://res.purcotton.com//images/commodity/002011002/80000000/002000001378/10000001_00000695/D1F57051FAB232B135C203D9F0ADCD47.jpg_750x600.jpg','2');
 
 #
 # Structure for table "goods_size"
@@ -101,23 +105,6 @@ CREATE TABLE `goods_size` (
 #
 
 INSERT INTO `goods_size` VALUES (1,'幼儿床适用',2);
-
-#
-# Structure for table "goods_sub_cate"
-#
-
-CREATE TABLE `goods_sub_cate` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) NOT NULL DEFAULT '',
-  `p_cate_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=85 DEFAULT CHARSET=utf8;
-
-#
-# Data for table "goods_sub_cate"
-#
-
-INSERT INTO `goods_sub_cate` VALUES (1,'周大福',1),(2,'周生生',1),(3,'GUCCI',1),(4,'FENDI',1),(5,'BOSS',1),(6,'OMEGA',1),(7,'TISSOT',1),(8,'夹克',2),(9,'休闲裤',2),(10,'卫衣',2),(11,'牛仔裤',2),(12,'棉服',2),(13,'风衣',2),(14,'棒球服',2),(15,'西服',2),(16,'T恤',2),(17,'羊绒大衣',3),(18,'棉服',3),(19,'宽松卫衣',3),(20,'打底衫',3),(21,'连衣裙',3),(22,'打底毛衣',3),(23,'羽绒裤',3),(24,'皮裤',3),(25,'真皮皮衣',3),(26,'体闲鞋',4),(27,'正装鞋',4),(28,'凉鞋',4),(29,'帆布鞋',4),(30,'豆豆鞋',4),(31,'小白鞋',4),(32,'运动鞋',4),(33,'拖鞋',4),(34,'单鞋',5),(35,'休闲鞋',5),(36,'高跟鞋',5),(37,'帆布鞋',5),(38,'凉鞋',5),(39,'板鞋',5),(40,'高筒鞋',5),(41,'拉杆箱',6),(42,'单肩包',6),(43,'双肩包',6),(44,'电脑包',6),(45,'单肩斜挎包',6),(46,'男士手包',6),(47,'帆布包',6),(48,'胸包腰包',6),(49,'游戏手机',7),(50,'拍照手机',7),(51,'全面屏手机',7),(52,'老人机',7),(53,'游戏本',8),(54,'轻薄本',8),(55,'游戏台式机',8),(56,'曲屏显示器',8),(57,'家用打印机',8),(58,'投影机',8),(59,'平板电脑',8),(60,'一体机',8),(61,'键盘',8),(62,'鼠标',8),(63,'移动硬盘',8),(64,'U盘',8),(65,'曲面电视',9),(66,'超薄电视',9),(67,'4K超高清',9),(68,'空调',9),(69,'洗衣机',9),(70,'冰箱',9),(71,'油烟机',9),(72,'燃气灶',9),(73,'消毒柜',9),(74,'洗碗机',9),(75,'热水器',9),(76,'电饭煲',9),(77,'糖果/巧克力',10),(78,'休闲零食',10),(79,'饼干蛋糕',10),(80,'饮料',10),(81,'咖啡',10),(82,'方便食品',10),(83,'米面调味',10),(84,'单反',8);
 
 #
 # Structure for table "news"
@@ -170,13 +157,13 @@ CREATE TABLE `news_comment` (
   `user_id` int(11) NOT NULL DEFAULT '0',
   `del_state` tinyint(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 #
 # Data for table "news_comment"
 #
 
-INSERT INTO `news_comment` VALUES (1,'这个手机真的太赞了!','2018-12-18 14:50:09',1,1,0),(13,'哈哈哈 这个手机是来搞笑的吧???','2018-12-18 14:50:09',1,34,0);
+INSERT INTO `news_comment` VALUES (1,'这个手机真的太赞了!','2018-12-18 14:50:09',1,1,0),(13,'哈哈哈 这个手机是来搞笑的吧???','2018-12-18 14:50:09',1,34,0),(14,'哈哈哈 这个手机是来搞笑的吧???','2018-12-21 12:48:19',1,1,0),(15,'哈哈哈 这个手机是来搞笑的吧???','2018-12-21 13:03:17',1,1,0);
 
 #
 # Structure for table "receiver_address"
@@ -203,6 +190,26 @@ CREATE TABLE `receiver_address` (
 INSERT INTO `receiver_address` VALUES (1,1,'前端大法好','13838383838','430000','湖北省','武汉市','洪山区','光谷大道云计算孵化中心1栋3楼',1),(2,1,'传智大法好','13030303030','430070','湖北省','武汉市','东湖高新区','金融港B15栋',0),(4,21,'酷酷222','13838383838','430000','湖北省','武汉市','洪山区','汤逊湖北路长城科技园6栋知乐楼',0),(5,21,'凯文2','13838383838','430000','湖北省','武汉市','洪山区','汤逊湖北路长城科技园6栋知乐楼',1),(6,21,'嘿嘿嘿','13838383838','430000','湖北省','武汉市','洪山区','汤逊湖北路长城科技园6栋知乐楼',0),(7,21,'嘿嘿嘿','13838383838','430000','湖北省','武汉市','洪山区','汤逊湖北路长城科技园6栋知乐楼',0),(8,21,'酷酷222','13838383838','430000','湖北省','武汉市','洪山区','汤逊湖北路长城科技园6栋知乐楼',0),(9,1,'谢谢','13838383838','430000','湖北省','武汉市','洪山区','汤逊湖北路长城科技园6栋知乐楼',0),(10,1,'czr','13838383838','430000','湖北省','武汉市','洪山区','汤逊湖北路长城科技园6栋知乐楼',0);
 
 #
+# Structure for table "shopping_cart"
+#
+
+CREATE TABLE `shopping_cart` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `goods_id` int(11) NOT NULL DEFAULT '0',
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `count` int(11) NOT NULL DEFAULT '0',
+  `utime` varchar(255) NOT NULL DEFAULT '',
+  `del_state` tinyint(3) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+#
+# Data for table "shopping_cart"
+#
+
+INSERT INTO `shopping_cart` VALUES (1,1,1,12,'2018-12-21',0),(3,2,1,24,'2018-12-21 14:38:39',0),(7,1,35,0,'2018-12-21 16:03:49',1),(9,4,35,1,'2018-12-21 16:03:55',0);
+
+#
 # Structure for table "users"
 #
 
@@ -220,7 +227,7 @@ CREATE TABLE `users` (
 # Data for table "users"
 #
 
-INSERT INTO `users` VALUES (1,'紫阳','ltc','$2a$10$W3WVrf9UzxTWD6bXXXxShexJZR50f3/fPeDVmG9p/MSlXKV7a7RSq','12345678999','2018-12-12 23:46:27'),(34,'泰坦','ltc10','$2a$10$4dMGBA/4vYa7yozjdP4gN..DpvgRJ2NngSXjEbANKVWvqtJEuVa8m','13838383838','2018-12-18 14:39:13');
+INSERT INTO `users` VALUES (1,'紫阳','ltc','$2a$10$W3WVrf9UzxTWD6bXXXxShexJZR50f3/fPeDVmG9p/MSlXKV7a7RSq','12345678999','2018-12-12 23:46:27'),(34,'泰坦','ltc10','$2a$10$4dMGBA/4vYa7yozjdP4gN..DpvgRJ2NngSXjEbANKVWvqtJEuVa8m','13838383838','2018-12-18 14:39:13'),(35,'泰坦2','ltc2','$2a$10$1JSmHXgml8JkBKrye8tEkuYNW8/KQfNrRPMBe78i87qml.hokQgTO','13838383838','2018-12-21 14:43:45');
 
 #
 # Structure for table "users_auth"
@@ -232,10 +239,10 @@ CREATE TABLE `users_auth` (
   `token` varchar(255) NOT NULL DEFAULT '',
   `ctime` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
 #
 # Data for table "users_auth"
 #
 
-INSERT INTO `users_auth` VALUES (29,1,'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXQiOiJpdGNhc3Qtd2giLCJpYXQiOjE1NDUxMTg2ODUsImV4cCI6MTU0NzcxMDY4NX0.FdMHE72C85X4FfnafWORO_al-nMMGRydXadLncbuFIk','2018-12-18 15:38:05'),(30,1,'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXQiOiJpdGNhc3Qtd2giLCJpYXQiOjE1NDUyMjUzODYsImV4cCI6MTU0NzgxNzM4Nn0.NpmWdqex5jvw1usi72HDIwMgEwzYuRoBy8pfV0V18cM','2018-12-19 21:16:26');
+INSERT INTO `users_auth` VALUES (29,1,'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXQiOiJpdGNhc3Qtd2giLCJpYXQiOjE1NDUxMTg2ODUsImV4cCI6MTU0NzcxMDY4NX0.FdMHE72C85X4FfnafWORO_al-nMMGRydXadLncbuFIk','2018-12-18 15:38:05'),(33,35,'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXQiOiJpdGNhc3Qtd2giLCJpYXQiOjE1NDUzNzQ2MjUsImV4cCI6MTU0Nzk2NjYyNX0.xv_ZvKCm33-49Cj003MQjDGomLATMZcj3qctFfKT1vo','2018-12-21 14:43:45');
