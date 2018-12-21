@@ -97,7 +97,12 @@ module.exports = {
 
     sqlExcute(getGoodsInfoSql, req.params.id)
       .then(result => {
-        res.sendSucc('获取商品详情成功!', result[0])
+        let goodsInfo = result[0]
+        goodsInfo.color && (goodsInfo.color = goodsInfo.color.split(','))
+        goodsInfo.size && (goodsInfo.size = goodsInfo.size.split(','))
+        goodsInfo.small_img && (goodsInfo.small_img = goodsInfo.small_img.split(','))
+        goodsInfo.big_img && (goodsInfo.big_img = goodsInfo.big_img.split(','))
+        res.sendSucc('获取商品详情成功!', goodsInfo)
       })
   }
 }
