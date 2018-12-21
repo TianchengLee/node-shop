@@ -49,4 +49,6 @@ router.post('/postGoodsToCart/:id', ctrl.cart.postGoodsToCart)
  */
 router.get('/deleteGoodsFromCart/:id', ctrl.cart.deleteGoodsFromCart)
 
+router.get('/getGoodsFromCart', ctrl.cart.getGoodsFromCart)
+
 module.exports = router;
