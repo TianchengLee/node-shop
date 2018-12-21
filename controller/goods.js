@@ -104,5 +104,8 @@ module.exports = {
         goodsInfo.big_img && (goodsInfo.big_img = goodsInfo.big_img.split(','))
         res.sendSucc('获取商品详情成功!', goodsInfo)
       })
+      .catch(err => {
+        res.sendErr(400, '获取商品详情失败!请检查id是否正确!')
+      })
   }
 }
