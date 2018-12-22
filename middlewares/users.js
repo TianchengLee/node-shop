@@ -15,5 +15,8 @@ module.exports = {
       }, err => {
         next()
       })
+      .catch(e => {
+        next()
+      })
   },
 }

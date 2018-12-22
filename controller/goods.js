@@ -19,6 +19,9 @@ module.exports = {
       .then(result => {
         res.sendSucc('获取商品一级分类列表数据成功!', result)
       })
+      .catch(e => {
+        res.sendErr(400, e.message)
+      })
   },
   getGoodsSubCategoriesAction(req, res) {
     if (!req.checkFormBody(['page', 'pageSize'], res)) return
@@ -27,12 +30,18 @@ module.exports = {
       .then(result => {
         res.sendSucc('获取商品所有二级分类数据成功!', { cates: result[0], totalCount: result[1][0].count })
       })
+      .catch(e => {
+        res.sendErr(400, e.message)
+      })
   },
   getGoodsSubCategoriesByIdAction(req, res) {
     const cateId = parseInt(req.params.id)
     sqlExcute(getGoodsSubCategoriesByIdSql, cateId)
       .then(result => {
         res.sendSucc('获取商品分类数据成功!', result)
+      })
+      .catch(e => {
+        res.sendErr(400, e.message)
       })
   },
   getGoodsListAction(req, res) {
@@ -78,6 +87,9 @@ module.exports = {
           item.big_img && (item.big_img = item.big_img.split(','))
         })
         res.sendSucc('获取商品列表成功!', { goods: result[0], totalCount: result[1][0].count })
+      })
+      .catch(e => {
+        res.sendErr(400, e.message)
       })
   },
   getGoodsInfoAction(req, res) {

@@ -214,6 +214,9 @@ module.exports = {
       .then(result => {
         res.sendSucc('获取收货人列表成功!', result)
       })
+      .catch(e => {
+        res.sendErr(400, e.message)
+      })
   },
   deleteReceiverAddressAction(req, res) {
     const receiverId = req.params.id
