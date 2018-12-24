@@ -31,7 +31,7 @@ const getNewsByCategoriesSql = `SELECT id, title, ctime, icon, description, view
                           WHERE del_state = 0
                           AND cate_id = ?`
 
-const getNewsInfoByIdSql = `SELECT id, title, ctime, icon, description, content views
+const getNewsInfoByIdSql = `SELECT id, title, ctime, icon, description, content, views
                             FROM news
                             WHERE del_state = 0
                             AND id = ?
