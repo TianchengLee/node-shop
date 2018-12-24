@@ -32,7 +32,10 @@ app.set('view engine', 'ejs')
 app.use(commonMiddleware.sendSucc)
 app.use(commonMiddleware.sendErr)
 app.use(commonMiddleware.checkFormBody)
-app.use(cors())
+app.use(cors({
+  origin: /.*/,
+  credentials: true
+}))
 // app.use(logger('dev'))
 // app.use(logger('combined', { stream: accessLogStream }))
 app.use(express.json())
