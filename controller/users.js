@@ -218,6 +218,17 @@ module.exports = {
         res.sendErr(400, e.message)
       })
   },
+
+  getReceiverAddressByIdAction(req, res) {
+    sqlExcute(getReceiverAddressSql + ' AND id = ? LIMIT 0, 1', [req.userInfo.id, req.params.id])
+      .then(result => {
+        if (result.length === 0) throw new Error('获取收货人信息失败!请检查id是否正确!')
+        res.sendSucc('获取收货人信息成功!', result[0])
+      })
+      .catch(e => {
+        res.sendErr(400, e.message)
+      })
+  },
   deleteReceiverAddressAction(req, res) {
     const receiverId = req.params.id
     sqlExcute(deleteReceiverAddressSql, receiverId)

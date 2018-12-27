@@ -774,6 +774,82 @@
     "groupTitle": "3_Users_Receiver"
   },
   {
+    "type": "get",
+    "url": "/v1/users/getReceiverAddress/:id",
+    "title": "获取指定收货人信息 (需要token)",
+    "description": "<p>获取指定收货人信息</p>",
+    "name": "getReceiverAddressById",
+    "group": "3_Users_Receiver",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>收货信息id</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>状态码</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "json",
+            "optional": false,
+            "field": "data",
+            "description": "<p>指定收货人信息</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "succMsg",
+            "description": "<p>成功消息</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n \"status\": 200,\n \"data\": [\n      {\n          \"id\": 2,\n          \"receiver_name\": \"传智大法好\",\n          \"mobile\": \"13030303030\",\n          \"postcode\": \"430070\",\n          \"province\": \"湖北省\",\n          \"city\": \"武汉市\",\n          \"area\": \"东湖高新区\",\n          \"detailed_address\": \"金融港B15栋\"\n      }\n  ],\n \"succMsg\": \"获取收货人列表成功!\",\n \"errMsg\": null\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "/v1/users/getReceiverAddress/:id"
+      }
+    ],
+    "version": "1.0.0",
+    "filename": "routes/v1/users.js",
+    "groupTitle": "3_Users_Receiver"
+  },
+  {
     "type": "post",
     "url": "/v1/users/updateReceiverAddress/:id",
     "title": "修改收货人信息 (需要token)",

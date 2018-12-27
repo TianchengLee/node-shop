@@ -214,6 +214,40 @@ router.post('/updatePassword', ctrl.users.updatePasswordAction)
 router.get('/getReceiverAddress', ctrl.users.getReceiverAddressAction)
 
 /**
+ * @api {get} /v1/users/getReceiverAddress/:id 获取指定收货人信息 (需要token)
+ * @apiDescription 获取指定收货人信息
+ * @apiName getReceiverAddressById
+ * @apiGroup 3.Users-Receiver
+ * @apiHeader {string} Authorization token
+ * @apiParam {number} id 收货信息id
+ * @apiSuccess {number} status 状态码
+ * @apiSuccess {json} data 指定收货人信息
+ * @apiSuccess {string} succMsg 成功消息
+ * @apiSuccess {string} succMsg 错误消息
+ * @apiSuccessExample {json} Success-Response:
+ * {
+ *  "status": 200,
+ *  "data": [
+ *       {
+ *           "id": 2,
+ *           "receiver_name": "传智大法好",
+ *           "mobile": "13030303030",
+ *           "postcode": "430070",
+ *           "province": "湖北省",
+ *           "city": "武汉市",
+ *           "area": "东湖高新区",
+ *           "detailed_address": "金融港B15栋"
+ *       }
+ *   ],
+ *  "succMsg": "获取收货人列表成功!",
+ *  "errMsg": null
+ * }
+ * @apiSampleRequest /v1/users/getReceiverAddress/:id
+ * @apiVersion 1.0.0
+ */
+router.get('/getReceiverAddress/:id', ctrl.users.getReceiverAddressByIdAction)
+
+/**
  * @api {get} /v1/users/deleteReceiverAddress/:id 删除收货人信息 (需要token)
  * @apiDescription 删除收货人信息
  * @apiName deleteReceiverAddress
