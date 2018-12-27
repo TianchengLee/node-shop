@@ -2,14 +2,14 @@ const sqlExcute = require('../db')
 const moment = require('moment')
 
 const getGoodsCategoriesSql = `SELECT id, name FROM goods_cate WHERE p_cate_id IS NULL`
-const getGoodsSubCategoriesSql = `SELECT id, name
+const getGoodsSubCategoriesSql = `SELECT id, name, img
                                   FROM goods_cate
                                   WHERE p_cate_id IS NOT NULL
                                   LIMIT ?, ?;
                                   SELECT COUNT(*) AS count
                                   FROM goods_cate
                                   WHERE p_cate_id IS NOT NULL`
-const getGoodsSubCategoriesByIdSql = `SELECT id, name 
+const getGoodsSubCategoriesByIdSql = `SELECT id, name, img
                                       FROM goods_cate
                                       WHERE p_cate_id = ?`
 

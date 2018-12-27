@@ -57,24 +57,29 @@ router.get('/getGoodsCategories', ctrl.goods.getGoodsCategoriesAction)
     "data": {
       "cates": [
         {
-            "id": 5,
-            "name": "婴童护理"
+          "id": 15,
+          "name": "孕产用品",
+          "img": "https://res.purcotton.com/category/002004.jpg"
         },
         {
-            "id": 6,
-            "name": "婴童卫浴"
+          "id": 16,
+          "name": "厨房用品",
+          "img": "https://res.purcotton.com/category/003001.jpg"
         },
         {
-            "id": 7,
-            "name": "婴童床品"
+          "id": 17,
+          "name": "床上用品",
+          "img": "https://res.purcotton.com/category/003002.jpg"
         },
         {
-            "id": 8,
-            "name": "婴童服装(0-1岁)"
+          "id": 18,
+          "name": "护理用品",
+          "img": "https://res.purcotton.com/category/003003.jpg"
         },
         {
-            "id": 9,
-            "name": "婴童服装(1-4岁)"
+          "id": 19,
+          "name": "旅游户外",
+          "img": "https://res.purcotton.com/category/003004.jpg"
         }
       ],
       "totalCount": 20
@@ -101,34 +106,41 @@ router.get('/getGoodsSubCategories', ctrl.goods.getGoodsSubCategoriesAction)
  * {
     "status": 200,
     "data": [
-      {
-          "id": 5,
-          "name": "婴童护理"
-      },
-      {
-          "id": 6,
-          "name": "婴童卫浴"
-      },
-      {
-          "id": 7,
-          "name": "婴童床品"
-      },
-      {
-          "id": 8,
-          "name": "婴童服装(0-1岁)"
-      },
-      {
-          "id": 9,
-          "name": "婴童服装(1-4岁)"
-      },
-      {
-          "id": 10,
-          "name": "婴童服装(4岁以上) "
-      },
-      {
-          "id": 11,
-          "name": "婴童服饰"
-      }
+        {
+            "id": 5,
+            "name": "婴童护理",
+            "img": "https://res.purcotton.com/category/001006.jpg"
+        },
+        {
+            "id": 6,
+            "name": "婴童卫浴",
+            "img": "https://res.purcotton.com/category/001007.jpg"
+        },
+        {
+            "id": 7,
+            "name": "婴童床品",
+            "img": "https://res.purcotton.com/category/001001.jpg"
+        },
+        {
+            "id": 8,
+            "name": "婴童服装(0-1岁)",
+            "img": "https://res.purcotton.com/category/001003.jpg"
+        },
+        {
+            "id": 9,
+            "name": "婴童服装(1-4岁)",
+            "img": "https://res.purcotton.com/category/001004.jpg"
+        },
+        {
+            "id": 10,
+            "name": "婴童服装(4岁以上) ",
+            "img": "https://res.purcotton.com/category/001005.jpg"
+        },
+        {
+            "id": 11,
+            "name": "婴童服饰",
+            "img": "https://res.purcotton.com/category/001002.jpg"
+        }
     ],
     "succMsg": "获取商品分类数据成功!",
     "errMsg": null
