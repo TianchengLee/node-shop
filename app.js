@@ -78,6 +78,7 @@ app.use(expressJwt({
     /\/v1\/users\/checkUsername\/\w*/,
     /\/news\/get\w*/,
     /\/goods\/get\w*/,
+    /\/home\/get\w*/,
   ]
 }))
 

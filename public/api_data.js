@@ -1,6 +1,56 @@
 define({ "api": [
   {
     "type": "get",
+    "url": "/v1/home/getBanners",
+    "title": "获取轮播图信息",
+    "description": "<p>获取轮播图信息</p>",
+    "name": "getBanners",
+    "group": "0_Home",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "number",
+            "optional": false,
+            "field": "status",
+            "description": "<p>状态码</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "json",
+            "optional": false,
+            "field": "data",
+            "description": "<p>轮播图列表数据</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "succMsg",
+            "description": "<p>成功消息</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n    \"status\": 200,\n    \"data\": null,\n    \"succMsg\": \"删除购物车商品成功!\",\n    \"errMsg\": null\n  }",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "/v1/home/getBanners"
+      }
+    ],
+    "version": "1.0.0",
+    "filename": "routes/v1/home.js",
+    "groupTitle": "0_Home"
+  },
+  {
+    "type": "get",
     "url": "/v1/users/checkUsername/:username",
     "title": "检查用户名是否可用",
     "description": "<p>检查用户名是否可用</p>",
