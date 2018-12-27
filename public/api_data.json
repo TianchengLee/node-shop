@@ -35,7 +35,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n    \"status\": 200,\n    \"data\": null,\n    \"succMsg\": \"删除购物车商品成功!\",\n    \"errMsg\": null\n  }",
+          "content": "{\n    \"status\": 200,\n    \"data\": [\n      {\n        \"id\": 1,\n        \"img\": \"https://res.purcotton.com/activity/2018/12/25/ni/750-380.jpg\",\n        \"ctime\": \"2018-12-27 17:35:00\"\n      },\n      {\n        \"id\": 2,\n        \"img\": \"https://res.purcotton.com/activity/2018/12/13/ychx/750-380.jpg\",\n        \"ctime\": \"2018-12-27 17:35:00\"\n      },\n      {\n        \"id\": 3,\n        \"img\": \"https://res.purcotton.com/activity/2018/12/19/xkmrj/750-380.jpg\",\n        \"ctime\": \"2018-12-27 17:35:00\"\n      },\n      {\n        \"id\": 4,\n        \"img\": \"https://res.purcotton.com/activity/2018/12/21/sr/750-380.jpg\",\n        \"ctime\": \"2018-12-27 17:35:00\"\n      }\n    ],\n    \"succMsg\": \"获取轮播图列表成功!\",\n    \"errMsg\": null\n  }",
           "type": "json"
         }
       ]
