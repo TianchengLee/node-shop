@@ -21,7 +21,7 @@ const getUserInfoSql = `SELECT u.id, u.nickname, u.password, u.mobile ,ua.token,
 const updateUserInfoSql = `UPDATE users
                           SET ?
                           WHERE id = ?`
-const getReceiverAddressSql = `SELECT id, receiver_name, mobile, postcode, province, city, area, detailed_address 
+const getReceiverAddressSql = `SELECT id, receiver_name, mobile, postcode, province, city, area, detailed_address, common_used
                               FROM receiver_address
                               WHERE del_state = 0 
                               AND user_id = ?`
@@ -36,6 +36,8 @@ const updateReceiverAddressSql = `UPDATE receiver_address
                                   SET ?
                                   WHERE id = ?
                                   AND user_id = ?`
+
+const setAllReceiverCommonUsedToZeroSql = 'UPDATE receiver_address SET common_used = 0 WHERE user_id = ?'
 
 module.exports = {
   registerAction(req, res) {
@@ -240,9 +242,9 @@ module.exports = {
         res.sendErr(400, e.message)
       })
   },
-  addReceiverAddressAction(req, res) {
+  async addReceiverAddressAction(req, res) {
 
-    let attrs = ['receiver_name', 'mobile', 'postcode', 'province', 'city', 'area', 'detailed_address']
+    let attrs = ['receiver_name', 'mobile', 'postcode', 'province', 'city', 'area', 'detailed_address', 'common_used']
 
     if (!req.checkFormBody(attrs, res)) return
 
@@ -251,6 +253,9 @@ module.exports = {
       receiverInfo[attr] = req.body[attr]
     })
     receiverInfo.user_id = req.userInfo.id
+
+    if (receiverInfo.common_used == 1) await sqlExcute(setAllReceiverCommonUsedToZeroSql, receiverInfo.user_id)
+
     sqlExcute(addReceiverAddressSql, receiverInfo)
       .then(result => {
         if (result.affectedRows) {
@@ -268,8 +273,11 @@ module.exports = {
     const receiverId = req.params.id
     let receiverInfo = null
     sqlExcute(getReceiverAddressByIdSql, [req.userInfo.id, receiverId])
-      .then(result => {
+      .then(async result => {
         if (!result || result.length === 0) throw new Error('收货人信息不存在!')
+
+        if (req.body.common_used == 1) await sqlExcute(setAllReceiverCommonUsedToZeroSql, req.userInfo.id)
+        
         receiverInfo = result[0]
         for (let k in receiverInfo) {
           req.body[k] && (receiverInfo[k] = req.body[k])

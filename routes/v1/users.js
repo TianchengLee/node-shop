@@ -202,7 +202,8 @@ router.post('/updatePassword', ctrl.users.updatePasswordAction)
  *           "province": "湖北省",
  *           "city": "武汉市",
  *           "area": "东湖高新区",
- *           "detailed_address": "金融港B15栋"
+ *           "detailed_address": "金融港B15栋",
+ *           "common_used": 0
  *       }
  *   ],
  *  "succMsg": "获取收货人列表成功!",
@@ -236,7 +237,8 @@ router.get('/getReceiverAddress', ctrl.users.getReceiverAddressAction)
  *           "province": "湖北省",
  *           "city": "武汉市",
  *           "area": "东湖高新区",
- *           "detailed_address": "金融港B15栋"
+ *           "detailed_address": "金融港B15栋",
+ *           "common_used": 0
  *       }
  *   ],
  *  "succMsg": "获取收货人列表成功!",
@@ -283,6 +285,7 @@ router.get('/deleteReceiverAddress/:id', ctrl.users.deleteReceiverAddressAction)
  * @apiParam {string} city 市
  * @apiParam {string} area 区
  * @apiParam {string} detailed_address 详细地址
+ * @apiParam {number} common_used 是否为常用收货人, 1表示常用, 0表示不常用
  * @apiSuccess {number} status 状态码
  * @apiSuccess {json} data 添加的收货人信息
  * @apiSuccess {string} succMsg 成功消息
@@ -299,7 +302,8 @@ router.get('/deleteReceiverAddress/:id', ctrl.users.deleteReceiverAddressAction)
  *       "city": "武汉市",
  *       "area": "洪山区",
  *       "detailed_address": "汤逊湖北路长城科技园6栋知乐楼",
- *       "user_id": 1
+ *       "user_id": 1,
+ *       "common_used": 0
  *   },
  *   "succMsg": "添加收货人成功!",
  *   "errMsg": null
@@ -322,6 +326,7 @@ router.post('/addReceiverAddress', ctrl.users.addReceiverAddressAction)
  * @apiParam {string} [city] 市
  * @apiParam {string} [area] 区
  * @apiParam {string} [detailed_address] 详细地址
+ * @apiParam {number} [common_used] 是否为常用收货人, 1表示常用, 0表示不常用
  * @apiSuccess {number} status 状态码
  * @apiSuccess {json} data 修改的收货人信息
  * @apiSuccess {string} succMsg 成功消息
@@ -338,7 +343,8 @@ router.post('/addReceiverAddress', ctrl.users.addReceiverAddressAction)
  *       "city": "武汉市",
  *       "area": "洪山区",
  *       "detailed_address": "汤逊湖北路长城科技园6栋知乐楼",
- *       "user_id": 1
+ *       "user_id": 1,
+ *       "common_used": 0
  *   },
  *   "succMsg": "修改收货人成功!",
  *   "errMsg": null

@@ -630,6 +630,13 @@ define({ "api": [
             "optional": false,
             "field": "detailed_address",
             "description": "<p>详细地址</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "number",
+            "optional": false,
+            "field": "common_used",
+            "description": "<p>是否为常用收货人, 1表示常用, 0表示不常用</p>"
           }
         ]
       }
@@ -670,7 +677,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n  \"status\": 200,\n  \"data\":  {\n      \"id\": 1,\n      \"receiver_name\": \"传智人\",\n      \"mobile\": \"13838383838\",\n      \"postcode\": \"430000\",\n      \"province\": \"湖北省\",\n      \"city\": \"武汉市\",\n      \"area\": \"洪山区\",\n      \"detailed_address\": \"汤逊湖北路长城科技园6栋知乐楼\",\n      \"user_id\": 1\n  },\n  \"succMsg\": \"添加收货人成功!\",\n  \"errMsg\": null\n}",
+          "content": "{\n  \"status\": 200,\n  \"data\":  {\n      \"id\": 1,\n      \"receiver_name\": \"传智人\",\n      \"mobile\": \"13838383838\",\n      \"postcode\": \"430000\",\n      \"province\": \"湖北省\",\n      \"city\": \"武汉市\",\n      \"area\": \"洪山区\",\n      \"detailed_address\": \"汤逊湖北路长城科技园6栋知乐楼\",\n      \"user_id\": 1,\n      \"common_used\": 0\n  },\n  \"succMsg\": \"添加收货人成功!\",\n  \"errMsg\": null\n}",
           "type": "json"
         }
       ]
@@ -809,7 +816,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n \"status\": 200,\n \"data\": [\n      {\n          \"id\": 2,\n          \"receiver_name\": \"传智大法好\",\n          \"mobile\": \"13030303030\",\n          \"postcode\": \"430070\",\n          \"province\": \"湖北省\",\n          \"city\": \"武汉市\",\n          \"area\": \"东湖高新区\",\n          \"detailed_address\": \"金融港B15栋\"\n      }\n  ],\n \"succMsg\": \"获取收货人列表成功!\",\n \"errMsg\": null\n}",
+          "content": "{\n \"status\": 200,\n \"data\": [\n      {\n          \"id\": 2,\n          \"receiver_name\": \"传智大法好\",\n          \"mobile\": \"13030303030\",\n          \"postcode\": \"430070\",\n          \"province\": \"湖北省\",\n          \"city\": \"武汉市\",\n          \"area\": \"东湖高新区\",\n          \"detailed_address\": \"金融港B15栋\",\n          \"common_used\": 0\n      }\n  ],\n \"succMsg\": \"获取收货人列表成功!\",\n \"errMsg\": null\n}",
           "type": "json"
         }
       ]
@@ -885,7 +892,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n \"status\": 200,\n \"data\": [\n      {\n          \"id\": 2,\n          \"receiver_name\": \"传智大法好\",\n          \"mobile\": \"13030303030\",\n          \"postcode\": \"430070\",\n          \"province\": \"湖北省\",\n          \"city\": \"武汉市\",\n          \"area\": \"东湖高新区\",\n          \"detailed_address\": \"金融港B15栋\"\n      }\n  ],\n \"succMsg\": \"获取收货人列表成功!\",\n \"errMsg\": null\n}",
+          "content": "{\n \"status\": 200,\n \"data\": [\n      {\n          \"id\": 2,\n          \"receiver_name\": \"传智大法好\",\n          \"mobile\": \"13030303030\",\n          \"postcode\": \"430070\",\n          \"province\": \"湖北省\",\n          \"city\": \"武汉市\",\n          \"area\": \"东湖高新区\",\n          \"detailed_address\": \"金融港B15栋\",\n          \"common_used\": 0\n      }\n  ],\n \"succMsg\": \"获取收货人列表成功!\",\n \"errMsg\": null\n}",
           "type": "json"
         }
       ]
@@ -970,6 +977,13 @@ define({ "api": [
             "optional": true,
             "field": "detailed_address",
             "description": "<p>详细地址</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "number",
+            "optional": true,
+            "field": "common_used",
+            "description": "<p>是否为常用收货人, 1表示常用, 0表示不常用</p>"
           }
         ]
       }
@@ -1010,7 +1024,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n  \"status\": 200,\n  \"data\":  {\n      \"id\": 1,\n      \"receiver_name\": \"传智人\",\n      \"mobile\": \"13838383838\",\n      \"postcode\": \"430000\",\n      \"province\": \"湖北省\",\n      \"city\": \"武汉市\",\n      \"area\": \"洪山区\",\n      \"detailed_address\": \"汤逊湖北路长城科技园6栋知乐楼\",\n      \"user_id\": 1\n  },\n  \"succMsg\": \"修改收货人成功!\",\n  \"errMsg\": null\n}",
+          "content": "{\n  \"status\": 200,\n  \"data\":  {\n      \"id\": 1,\n      \"receiver_name\": \"传智人\",\n      \"mobile\": \"13838383838\",\n      \"postcode\": \"430000\",\n      \"province\": \"湖北省\",\n      \"city\": \"武汉市\",\n      \"area\": \"洪山区\",\n      \"detailed_address\": \"汤逊湖北路长城科技园6栋知乐楼\",\n      \"user_id\": 1,\n      \"common_used\": 0\n  },\n  \"succMsg\": \"修改收货人成功!\",\n  \"errMsg\": null\n}",
           "type": "json"
         }
       ]
