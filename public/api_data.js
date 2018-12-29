@@ -1850,7 +1850,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n    \"status\": 200,\n    \"data\": null,\n    \"succMsg\": \"删除购物车商品成功!\",\n    \"errMsg\": null\n  }",
+          "content": "{\n    \"status\": 200,\n    \"data\": [\n        {\n            \"id\": 100,\n            \"name\": \"春夏婴幼儿纱布侧开睡袋70x55（帆船小鱼）袋装，1件/袋\",\n            \"discount_info\": \"【限时活动】圣诞欢乐颂到手价5折起【满赠】圣诞节全场单笔满338送卫生巾2包，满468送汗巾3条，满658送书籍1本（单笔订单限赠1份）\",\n            \"price\": \"368\",\n            \"sale_price\": \"368\",\n            \"stock\": 0,\n            \"sale_count\": 2525,\n            \"ctime\": \"2018-12-24 22:47:16\",\n            \"count\": 1,\n            \"small_img\": \"https://res.purcotton.com//images/commodity/002001002/80000000/002000000596/10000001_00000559/05C427D668A3FF7272DB9631FAB82DB7.jpg_100x100.jpg,https://res.purcotton.com//images/commodity/002001002/80000000/002000000596/10000001_00000559/51C4A2F683F3C2C81C40101C7FEC8059.jpg_100x100.jpg,https://res.purcotton.com//images/commodity/002001002/80000000/002000000596/10000001_00000559/B9612C9D301F1E7248CEE657A1C59125.jpg_100x100.jpg,https://res.purcotton.com//images/commodity/002001002/80000000/002000000596/10000001_00000559/5A60CFE0505855A94B5B820AB7A48A87.jpg_100x100.jpg,https://res.purcotton.com//images/commodity/002001002/80000000/002000000596/10000001_00000559/C6B7095789B0AC22E188D3C4378E8AEF.jpg_100x100.jpg\"\n        }\n    ],\n    \"succMsg\": \"获取购物车商品信息成功!\",\n    \"errMsg\": null\n  }",
           "type": "json"
         }
       ]
