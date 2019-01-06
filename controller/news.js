@@ -131,7 +131,7 @@ module.exports = {
       })
       .then(result => {
         if (!result) throw new Error('新闻信息不存在!请传入正确的新闻id!')
-        res.sendSucc('发表评论成功!')
+        res.sendSucc('发表评论成功!', { id: result.insertId, comment, user_id, ctime, nickname: req.userInfo.nickname })
       })
       .catch(e => {
         res.sendErr(400, e.message)
