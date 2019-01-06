@@ -224,7 +224,8 @@ router.get('/getCommentList/:id', ctrl.news.getCommentListAction)
         "id": 37,
         "comment": "嘎嘎嘎",
         "user_id": 1,
-        "ctime": "2019-01-06 20:03:27"
+        "ctime": "2019-01-06 20:03:27",
+        "nickname": "紫阳"
       },
       "succMsg": "发表评论成功!",
       "errMsg": null

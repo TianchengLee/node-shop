@@ -1,5 +1,5 @@
 const sqlExcute = require('../db')
-const getUserInfoByTokenSql = `SELECT u.id, u.username, u.mobile, ua.token
+const getUserInfoByTokenSql = `SELECT u.id, u.username, u.mobile, u.nickname, ua.token
                               FROM users AS u 
                               LEFT JOIN users_auth AS ua 
                               ON u.id = ua.user_id 
