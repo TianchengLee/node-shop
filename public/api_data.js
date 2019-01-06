@@ -1315,10 +1315,23 @@ define({ "api": [
   {
     "type": "post",
     "url": "/v1/news/postComment/:id",
-    "title": "发表评论",
+    "title": "发表评论(需要token)",
     "description": "<p>发表评论</p>",
     "name": "postComment",
     "group": "4_News_Info",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token</p>"
+          }
+        ]
+      }
+    },
     "parameter": {
       "fields": {
         "Parameter": [

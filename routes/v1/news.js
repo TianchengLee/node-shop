@@ -145,10 +145,11 @@ router.get('/getCommentList/:id', ctrl.news.getCommentListAction)
 
 
 /**
- * @api {post} /v1/news/postComment/:id 发表评论
+ * @api {post} /v1/news/postComment/:id 发表评论(需要token)
  * @apiDescription 发表评论
  * @apiName postComment
  * @apiGroup 4.News-Info
+ * @apiHeader {string} Authorization token
  * @apiParam {number} id 新闻id
  * @apiParam {string} comment 评论内容
  * @apiSuccess {number} status 状态码
