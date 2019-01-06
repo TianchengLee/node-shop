@@ -127,17 +127,78 @@ router.get('/getNewsInfo/:id', ctrl.news.getNewsInfoAction)
  * @apiSuccess {string} succMsg 错误消息
  * @apiSuccessExample {json} Success-Response:
  * {
- *   "status": 200,
- *   "data": [
-        {
-            "id": 1,
-            "comment": "这个手机真的太赞了!",
-            "news_id": 1
-        }
-     ],
- *   "succMsg": "获取新闻列表数据成功!",
- *   "errMsg": null
- * }
+    "status": 200,
+    "data": {
+        "comments": [
+            {
+                "id": 34,
+                "comment": "xxx",
+                "user_id": 1,
+                "ctime": "2019-01-06 19:39:03",
+                "nickname": "紫阳"
+            },
+            {
+                "id": 33,
+                "comment": "啊啊啊",
+                "user_id": 1,
+                "ctime": "2019-01-06 19:38:54",
+                "nickname": "紫阳"
+            },
+            {
+                "id": 32,
+                "comment": "按顺序全文",
+                "user_id": 1,
+                "ctime": "2019-01-06 19:35:49",
+                "nickname": "紫阳"
+            },
+            {
+                "id": 31,
+                "comment": "神神道道",
+                "user_id": 1,
+                "ctime": "2019-01-06 19:35:45",
+                "nickname": "紫阳"
+            },
+            {
+                "id": 30,
+                "comment": "洗啊啥大书店",
+                "user_id": 1,
+                "ctime": "2019-01-06 19:33:17",
+                "nickname": "紫阳"
+            },
+            {
+                "id": 29,
+                "comment": "啊啊啊",
+                "user_id": 1,
+                "ctime": "2019-01-06 19:33:14",
+                "nickname": "紫阳"
+            },
+            {
+                "id": 28,
+                "comment": "啊啊啊啊啊",
+                "user_id": 1,
+                "ctime": "2019-01-06 19:32:59",
+                "nickname": "紫阳"
+            },
+            {
+                "id": 27,
+                "comment": "啊啊啊",
+                "user_id": 1,
+                "ctime": "2019-01-06 19:32:52",
+                "nickname": "紫阳"
+            },
+            {
+                "id": 26,
+                "comment": "啊啊啊",
+                "user_id": 1,
+                "ctime": "2019-01-06 19:30:38",
+                "nickname": "紫阳"
+            }
+        ],
+        "totalCount": 9
+    },
+    "succMsg": "获取评论列表成功!",
+    "errMsg": null
+  }
  * @apiSampleRequest /v1/news/getCommentList/:id
  * @apiVersion 1.0.0
  */
