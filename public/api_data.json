@@ -1642,8 +1642,15 @@
             "group": "Parameter",
             "type": "number",
             "optional": true,
+            "field": "keys",
+            "description": "<p>搜索关键字,不传表示获取所有</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "number",
+            "optional": true,
             "field": "cateId",
-            "description": "<p>根据分类id获取分类商品列表信息</p>"
+            "description": "<p>分类id,不传表示获取所有新闻,权重高于keys,如果传入cate则不会进行搜索关键字</p>"
           },
           {
             "group": "Parameter",

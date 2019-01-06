@@ -50,18 +50,26 @@ module.exports = {
     // 分页参数
     const pageSize = parseInt(req.query.pageSize)
     let queryParams = [(req.query.page - 1) * pageSize, pageSize]
+    let queryParamsResult = []
 
     // 分类条件
     let queryCondition = ``
+
+    if (req.checkFormBody(['keys'])) {
+      queryCondition = `WHERE g.name LIKE ?
+                        OR g.description LIKE ?`
+      queryParamsResult = ['%' + req.query.keys + '%', '%' + req.query.keys + '%']
+    }
 
     // 检测是否有需要分类查询
     if (req.checkFormBody(['cateId'])) {
       queryCondition = `WHERE g.cate_id = ?
                         OR g.sub_cate_id = ?`
-      let cateArr = [req.query.cateId, req.query.cateId]
+      queryParamsResult = [req.query.cateId, req.query.cateId]
       // 拼接6个问号的查询参数
-      queryParams = cateArr.concat(queryParams).concat(cateArr)
     }
+
+    queryParams = queryParamsResult.concat(queryParams).concat(queryParamsResult)
 
     const getGoodsListSql = `SELECT g.id, g.name, g.cover_img, g.description, g.discount_info, g.price, g.sale_price, g.stock, g.sale_count, g.ctime
                         FROM goods g

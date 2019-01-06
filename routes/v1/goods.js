@@ -155,7 +155,8 @@ router.get('/getGoodsSubCategories/:id', ctrl.goods.getGoodsSubCategoriesByIdAct
  * @apiDescription 获取商品列表信息
  * @apiName getGoodsList
  * @apiGroup 6.Goods-Info
- * @apiParam {number} [cateId] 根据分类id获取分类商品列表信息
+ * @apiParam {number} [keys] 搜索关键字,不传表示获取所有
+ * @apiParam {number} [cateId] 分类id,不传表示获取所有新闻,权重高于keys,如果传入cate则不会进行搜索关键字
  * @apiParam {number} page 页码数
  * @apiParam {number} pageSize 每页条数
  * @apiSuccess {number} status 状态码
