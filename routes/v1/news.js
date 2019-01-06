@@ -218,12 +218,17 @@ router.get('/getCommentList/:id', ctrl.news.getCommentListAction)
  * @apiSuccess {string} succMsg 成功消息
  * @apiSuccess {string} succMsg 错误消息
  * @apiSuccessExample {json} Success-Response:
- * {
- *   "status": 200,
- *   "data": null,
- *   "succMsg": "发表评论成功!",
- *   "errMsg": null
- *}
+    {
+      "status": 200,
+      "data": {
+        "id": 37,
+        "comment": "嘎嘎嘎",
+        "user_id": 1,
+        "ctime": "2019-01-06 20:03:27"
+      },
+      "succMsg": "发表评论成功!",
+      "errMsg": null
+    }
  * @apiSampleRequest /v1/news/postComment/:id
  * @apiVersion 1.0.0
  */

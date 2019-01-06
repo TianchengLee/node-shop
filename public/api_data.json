@@ -1381,7 +1381,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n  \"status\": 200,\n  \"data\": null,\n  \"succMsg\": \"发表评论成功!\",\n  \"errMsg\": null\n}",
+          "content": "{\n  \"status\": 200,\n  \"data\": {\n    \"id\": 37,\n    \"comment\": \"嘎嘎嘎\",\n    \"user_id\": 1,\n    \"ctime\": \"2019-01-06 20:03:27\"\n  },\n  \"succMsg\": \"发表评论成功!\",\n  \"errMsg\": null\n}",
           "type": "json"
         }
       ]
