@@ -45,6 +45,7 @@ module.exports = {
       })
   },
   getGoodsListAction(req, res) {
+    console.log('aaa')
     if (!req.checkFormBody(['page', 'pageSize'], res)) return
 
     // 分页参数
@@ -54,7 +55,6 @@ module.exports = {
 
     // 分类条件
     let queryCondition = ``
-
     if (req.checkFormBody(['keys'])) {
       queryCondition = `WHERE g.name LIKE ?
                         OR g.description LIKE ?`

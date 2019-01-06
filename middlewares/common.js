@@ -11,7 +11,6 @@ function sendSucc(msg, data = null) {
 function checkFormBody(attrs = [], res) {
   let pass = true
   let keywords = []
-
   attrs.forEach(item => {
     if (!(item in this.body) && !(item in this.params) && !(item in this.query)) {
       keywords.push(item)
@@ -23,6 +22,7 @@ function checkFormBody(attrs = [], res) {
 
   checkBodies.forEach(item => {
     for (let k in item) {
+      if (attrs.indexOf(k) === -1) continue;
       let val = item[k]
       if (!val || !val.toString().trim()) {
         keywords.push(k)
@@ -30,6 +30,7 @@ function checkFormBody(attrs = [], res) {
       }
     }
   })
+  console.log(keywords)
   !pass && res && res.sendErr(400, keywords.join(',') + '未填写!')
   return pass
 }
