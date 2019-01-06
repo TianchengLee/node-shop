@@ -30,7 +30,6 @@ function checkFormBody(attrs = [], res) {
       }
     }
   })
-  console.log(keywords)
   !pass && res && res.sendErr(400, keywords.join(',') + '未填写!')
   return pass
 }

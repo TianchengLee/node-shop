@@ -45,7 +45,6 @@ module.exports = {
       })
   },
   getGoodsListAction(req, res) {
-    console.log('aaa')
     if (!req.checkFormBody(['page', 'pageSize'], res)) return
 
     // 分页参数
